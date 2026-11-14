@@ -1,0 +1,30 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import { formatFullDate } from '@/lib/dates';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  title: string;
+  date: Date;
+  class?: string;
+}
+
+const { lang, slug, title, date, class: className } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<a
+  href={localizedPath(lang, `blog/${slug}`)}
+  class:list={['bento-tile flex flex-col justify-between p-5', className]}
+>
+  <div class="flex items-center justify-between text-xs text-[var(--color-muted)]">
+    <span>{t('home.latestPost')}</span>
+    <span>{formatFullDate(date, lang)}</span>
+  </div>
+  <div class="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-[var(--color-fg)]">
+    {title} →
+  </div>
+</a>
+

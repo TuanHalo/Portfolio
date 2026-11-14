@@ -1,0 +1,31 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  name: string;
+}
+
+const { lang, name } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="no-print mt-12 border-t border-[var(--color-border)] py-6 text-xs text-[var(--color-muted)]">
+  <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p>© {year} {name}. {t('footer.builtWith')}</p>
+    <div class="flex items-center gap-4">
+      <a href={localizedPath(lang, 'resume')} class="hover:text-[var(--color-fg)] transition">
+        {t('nav.resume')}
+      </a>
+      <a href={localizedPath(lang, 'search')} class="hover:text-[var(--color-fg)] transition">
+        {t('nav.search')}
+      </a>
+      <a href={localizedPath(lang, 'contact')} class="hover:text-[var(--color-fg)] transition">
+        {t('nav.contact')}
+      </a>
+    </div>
+  </div>
+</footer>
+

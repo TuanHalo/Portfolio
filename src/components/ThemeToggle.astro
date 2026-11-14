@@ -1,0 +1,39 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label={t('theme.toggle')}
+  title={t('theme.toggle')}
+  class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-tile)] text-sm text-[var(--color-fg)] transition hover:border-[var(--color-accent)] cursor-pointer"
+>
+  <span class="dark:hidden" aria-hidden="true">☾</span>
+  <span class="hidden dark:inline" aria-hidden="true">☀</span>
+</button>
+
+<script>
+  function bindThemeToggles(): void {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+    buttons.forEach((btn) => {
+      if (btn.dataset.bound === 'true') return;
+      btn.dataset.bound = 'true';
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    });
+  }
+  bindThemeToggles();
+  document.addEventListener('astro:after-swap', bindThemeToggles);
+</script>
+

@@ -1,0 +1,28 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { getAlternatePath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+
+const { lang, class: className } = Astro.props;
+const t = useTranslations(lang);
+const targetLang: Lang = lang === 'en' ? 'vi' : 'en';
+const switchHref = getAlternatePath(Astro.url, targetLang);
+---
+
+<a
+  href={switchHref}
+  class:list={['bento-tile flex flex-col justify-between p-5', className]}
+>
+  <span class="text-xs text-[var(--color-muted)]">{t('home.language')}</span>
+  <div class="mt-4 flex items-center justify-between text-base font-semibold text-[var(--color-fg)]">
+    <span>{lang === 'en' ? 'EN · VI' : 'VI · EN'}</span>
+    <span class="text-xs font-normal text-[var(--color-accent)]">
+      {targetLang === 'vi' ? 'Tiếng Việt →' : 'English →'}
+    </span>
+  </div>
+</a>
+

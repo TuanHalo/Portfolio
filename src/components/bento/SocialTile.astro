@@ -1,0 +1,34 @@
+---
+interface Props {
+  network: 'github' | 'linkedin';
+  href: string;
+  handle: string;
+  class?: string;
+}
+
+const { network, href, handle, class: className } = Astro.props;
+
+const isGithub = network === 'github';
+const label = isGithub ? 'GitHub' : 'LinkedIn';
+const cta = isGithub ? `${handle} ↗` : 'Connect ↗';
+---
+
+<a
+  href={href || '#'}
+  target={href ? '_blank' : undefined}
+  rel={href ? 'noopener noreferrer' : undefined}
+  class:list={[
+    'bento-tile flex flex-col justify-between p-5 border-transparent',
+    isGithub
+      ? 'bg-zinc-900 text-white dark:bg-zinc-800'
+      : 'bg-sky-500 text-white dark:bg-sky-600',
+    className,
+  ]}
+>
+  <div class="flex items-center justify-between text-xs text-white/75">
+    <span>{label}</span>
+    <span aria-hidden="true">↗</span>
+  </div>
+  <div class="mt-4 text-base font-semibold tracking-tight">{cta}</div>
+</a>
+

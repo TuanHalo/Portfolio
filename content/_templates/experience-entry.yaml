@@ -1,0 +1,18 @@
+- id: role-company-slug
+  company: Company Name
+  role:
+    en: Role Title
+    vi: Chức danh
+  start: 2026-01-01
+  # end: 2026-12-31 # omit for Present
+  location:
+    en: Ho Chi Minh City
+    vi: TP. Hồ Chí Minh
+  highlights:
+    en:
+      - Action verb + what you built + measurable impact.
+    vi:
+      - Động từ hành động + nội dung công việc + kết quả.
+  stack:
+    - TypeScript
+

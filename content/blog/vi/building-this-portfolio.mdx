@@ -1,0 +1,26 @@
+---
+title: Cách tôi tổ chức Portfolio bằng Astro
+description: Thiết kế trang portfolio song ngữ tĩnh và kho lưu trữ cá nhân triển khai lên GitHub Pages.
+date: 2026-11-10
+tags:
+  - Astro
+  - TypeScript
+  - Portfolio
+draft: false
+translation: human
+---
+
+## Vì sao chỉ dùng một Repository?
+
+Tôi muốn có một nơi duy nhất lưu trữ tiểu sử, quá trình làm việc, các dự án, chứng chỉ và bài viết—đồng thời tự động sinh ra một trang web tĩnh thật nhanh từ chính các tệp dữ liệu đó.
+
+## Các quyết định chính
+
+1. **Markdown & YAML là nguồn dữ liệu gốc**: Mọi thông tin nằm trong `content/` và được kiểm tra kiểu dữ liệu bằng Zod lúc build.
+2. **Song ngữ mặc định**: Đường dẫn `/` hiển thị tiếng Anh, `/vi/` hiển thị tiếng Việt, kèm thông báo tự động khi bài viết chưa có bản dịch.
+3. **Xuất CV PDF tự động**: Thay vì chỉnh sửa thủ công file Word hay Figma riêng, Playwright sẽ in trang `/resume/` ra file PDF A4 ngay trong quy trình CI.
+
+## Bước tiếp theo
+
+Thay thế dần các nội dung mẫu trong `content/` bằng dự án và ghi chú thực tế.
+

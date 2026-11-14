@@ -1,0 +1,36 @@
+---
+title: Dự án Alpha
+summary: Bảng điều khiển phân tích đa khách hàng xây dựng với TypeScript, React và bộ nhớ đệm tầng biên.
+cover: ../_images/project-alpha.svg
+coverAlt: Giao diện xem trước của Dự án Alpha
+tags:
+  - TypeScript
+  - React
+  - PostgreSQL
+date: 2025-11-10
+featured: true
+translation: human
+links:
+  demo: https://example.com/project-alpha
+  repo: https://github.com/TuanHalo/Portfolio
+---
+
+## Tổng quan
+
+Dự án Alpha là một bài mẫu minh họa cách portfolio trình bày chi tiết dự án kỹ thuật. Bạn có thể thay nội dung này bằng dự án thực tế của mình.
+
+## Bài toán
+
+Các nhóm cần theo dõi số liệu sử dụng theo thời gian thực trên nhiều không gian làm việc mà không phải chờ truy vấn SQL nặng mỗi lần tải trang.
+
+## Kiến trúc & Giải pháp
+
+- **Tầng API kiểm soát kiểu**: Dùng chung schema Zod giữa backend và frontend để tránh lệch dữ liệu.
+- **Gộp truy vấn**: Gom các truy vấn đồng thời từ các widget thành một lượt gọi duy nhất.
+- **Bộ nhớ đệm tăng dần**: Tổng hợp dữ liệu theo giờ trong PostgreSQL giúp giữ độ trễ p95 dưới 120ms.
+
+## Kết quả
+
+- Phục vụ hơn **40.000 người dùng hoạt động hàng tháng** ổn định.
+- Giảm thời gian phản hồi API p95 xuống **38%**.
+

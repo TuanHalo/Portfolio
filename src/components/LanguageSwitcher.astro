@@ -1,0 +1,42 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { getAlternatePath } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const enUrl = getAlternatePath(Astro.url, 'en');
+const viUrl = getAlternatePath(Astro.url, 'vi');
+---
+
+<div
+  class="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-tile)] p-0.5 text-xs font-medium"
+  role="group"
+  aria-label="Language switcher"
+>
+  <a
+    href={enUrl}
+    class:list={[
+      'rounded-full px-2.5 py-1 transition',
+      lang === 'en'
+        ? 'bg-[var(--color-fg)] text-[var(--color-tile)]'
+        : 'text-[var(--color-muted)] hover:text-[var(--color-fg)]',
+    ]}
+  >
+    EN
+  </a>
+  <a
+    href={viUrl}
+    class:list={[
+      'rounded-full px-2.5 py-1 transition',
+      lang === 'vi'
+        ? 'bg-[var(--color-fg)] text-[var(--color-tile)]'
+        : 'text-[var(--color-muted)] hover:text-[var(--color-fg)]',
+    ]}
+  >
+    VI
+  </a>
+</div>
+

@@ -1,0 +1,109 @@
+---
+import type { Lang, UiKey } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  lang: Lang;
+  siteName: string;
+}
+
+interface NavItem {
+  readonly key: UiKey;
+  readonly path: string;
+}
+
+const { lang, siteName } = Astro.props;
+const t = useTranslations(lang);
+const currentPath = Astro.url.pathname;
+
+const navItems: readonly NavItem[] = [
+  { key: 'nav.about', path: 'about' },
+  { key: 'nav.projects', path: 'projects' },
+  { key: 'nav.experience', path: 'experience' },
+  { key: 'nav.certificates', path: 'certificates' },
+  { key: 'nav.blog', path: 'blog' },
+  { key: 'nav.resume', path: 'resume' },
+  { key: 'nav.contact', path: 'contact' },
+];
+---
+
+<header class="no-print sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-md">
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <a
+      href={localizedPath(lang, '')}
+      class="flex items-center gap-2 font-bold tracking-tight text-[var(--color-fg)] hover:text-[var(--color-accent)] transition"
+    >
+      <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-accent)] text-xs font-bold text-white">
+        MT
+      </span>
+      <span class="hidden sm:inline">{siteName}</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1 text-sm" aria-label="Main navigation">
+      {
+        navItems.map((item) => {
+          const href = localizedPath(lang, item.path);
+          const active = currentPath.startsWith(href);
+          return (
+            <a
+              href={href}
+              class:list={[
+                'rounded-lg px-2.5 py-1.5 transition',
+                active
+                  ? 'bg-[var(--color-tile)] font-medium text-[var(--color-fg)] shadow-xs border border-[var(--color-border)]'
+                  : 'text-[var(--color-muted)] hover:text-[var(--color-fg)]',
+              ]}
+            >
+              {t(item.key)}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={localizedPath(lang, 'search')}
+        aria-label={t('nav.search')}
+        title={t('nav.search')}
+        class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-tile)] text-xs text-[var(--color-muted)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-fg)]"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </a>
+      <LanguageSwitcher {lang} />
+      <ThemeToggle {lang} />
+    </div>
+  </div>
+
+  <!-- Mobile horizontal nav -->
+  <nav
+    class="flex md:hidden items-center gap-1 overflow-x-auto px-4 pb-2.5 text-xs"
+    aria-label="Mobile navigation"
+  >
+    {
+      navItems.map((item) => {
+        const href = localizedPath(lang, item.path);
+        const active = currentPath.startsWith(href);
+        return (
+          <a
+            href={href}
+            class:list={[
+              'shrink-0 rounded-full px-3 py-1 transition',
+              active
+                ? 'bg-[var(--color-fg)] text-[var(--color-tile)] font-medium'
+                : 'border border-[var(--color-border)] bg-[var(--color-tile)] text-[var(--color-muted)]',
+            ]}
+          >
+            {t(item.key)}
+          </a>
+        );
+      })
+    }
+  </nav>
+</header>
+

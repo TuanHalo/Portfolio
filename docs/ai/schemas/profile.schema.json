@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Profile Collection",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "handle",
+      "title",
+      "tagline",
+      "bio",
+      "location",
+      "availability",
+      "email",
+      "avatar",
+      "careerStart",
+      "socials"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "const": "me"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "handle": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "tagline": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          }
+        }
+      },
+      "bio": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "location": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "availability": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "avatar": {
+        "type": "string",
+        "minLength": 1
+      },
+      "careerStart": {
+        "type": "string",
+        "format": "date"
+      },
+      "socials": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "github": {
+            "type": "string"
+          },
+          "linkedin": {
+            "type": "string"
+          },
+          "facebook": {
+            "type": "string"
+          },
+          "x": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

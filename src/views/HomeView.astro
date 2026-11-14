@@ -1,0 +1,117 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  getCertificates,
+  getExperience,
+  getLocalizedBlogPosts,
+  getLocalizedProjects,
+  getProfile,
+  getSkills,
+} from '@/lib/content';
+import { computeYearsExperience } from '@/lib/dates';
+import ProfileTile from '@/components/bento/ProfileTile.astro';
+import SocialTile from '@/components/bento/SocialTile.astro';
+import StackTile from '@/components/bento/StackTile.astro';
+import FeaturedProjectTile from '@/components/bento/FeaturedProjectTile.astro';
+import StatTile from '@/components/bento/StatTile.astro';
+import LatestPostTile from '@/components/bento/LatestPostTile.astro';
+import ResumeTile from '@/components/bento/ResumeTile.astro';
+import LanguageTile from '@/components/bento/LanguageTile.astro';
+import CurrentRoleTile from '@/components/bento/CurrentRoleTile.astro';
+import CertificatesTile from '@/components/bento/CertificatesTile.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const [profile, skills, projects, posts, experience, certificates] = await Promise.all([
+  getProfile(),
+  getSkills(),
+  getLocalizedProjects(lang),
+  getLocalizedBlogPosts(lang),
+  getExperience(),
+  getCertificates(),
+]);
+
+const allSkillItems = skills.flatMap((group) => group.data.items);
+const featured = projects.find((p) => p.entry.data.featured) ?? projects[0];
+const latestPost = posts[0];
+const currentJob = experience[0];
+const yearsExp = computeYearsExperience(profile.careerStart);
+---
+
+<BaseLayout lang={lang} title={t('site.title')} description={t('site.description')}>
+  <section
+    class="bento-grid grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(120px,auto)]"
+    aria-label="Portfolio overview"
+  >
+    <ProfileTile
+      class="sm:col-span-2 lg:row-span-2"
+      {lang}
+      name={profile.name}
+      title={profile.title[lang]}
+      tagline={profile.tagline[lang]}
+      avatar={profile.avatar}
+      availability={profile.availability[lang]}
+    />
+
+    <SocialTile
+      network="github"
+      href={profile.socials.github}
+      handle={`@${profile.handle}`}
+    />
+    <SocialTile network="linkedin" href={profile.socials.linkedin} handle={profile.name} />
+
+    <StackTile class="sm:col-span-2" {lang} items={allSkillItems} />
+
+    {
+      featured && (
+        <FeaturedProjectTile
+          class="sm:col-span-2 lg:row-span-2"
+          {lang}
+          slug={featured.slug}
+          title={featured.entry.data.title}
+          summary={featured.entry.data.summary}
+          cover={featured.entry.data.cover}
+          coverAlt={featured.entry.data.coverAlt}
+          tags={featured.entry.data.tags}
+        />
+      )
+    }
+
+    <StatTile {lang} years={yearsExp} />
+
+    {
+      latestPost && (
+        <LatestPostTile
+          {lang}
+          slug={latestPost.slug}
+          title={latestPost.entry.data.title}
+          date={latestPost.entry.data.date}
+        />
+      )
+    }
+
+    <ResumeTile {lang} />
+    <LanguageTile {lang} />
+
+    {
+      currentJob && (
+        <CurrentRoleTile
+          class="sm:col-span-2"
+          {lang}
+          role={currentJob.data.role[lang]}
+          company={currentJob.data.company}
+        />
+      )
+    }
+
+    <CertificatesTile class="sm:col-span-2" {lang} count={certificates.length} />
+  </section>
+</BaseLayout>
+

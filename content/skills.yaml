@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=../docs/ai/schemas/skills.schema.json
+- id: languages
+  category:
+    en: Languages
+    vi: Ngôn ngữ lập trình
+  items:
+    - TypeScript
+    - JavaScript
+    - Go
+    - SQL
+    - HTML / CSS
+
+- id: frontend
+  category:
+    en: Frontend
+    vi: Giao diện (Frontend)
+  items:
+    - Astro
+    - React
+    - Next.js
+    - Tailwind CSS
+
+- id: backend
+  category:
+    en: Backend & Data
+    vi: Backend & Dữ liệu
+  items:
+    - Node.js
+    - PostgreSQL
+    - Redis
+    - REST & GraphQL
+
+- id: devops
+  category:
+    en: Tooling & Cloud
+    vi: Công cụ & Đám mây
+  items:
+    - Git & GitHub Actions
+    - Docker
+    - Linux
+    - Playwright
+

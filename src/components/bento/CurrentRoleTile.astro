@@ -1,0 +1,26 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  role: string;
+  company: string;
+  class?: string;
+}
+
+const { lang, role, company, class: className } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<a
+  href={localizedPath(lang, 'experience')}
+  class:list={['bento-tile flex flex-col justify-between p-5', className]}
+>
+  <span class="text-xs text-[var(--color-muted)]">{t('home.currentRole')}</span>
+  <div class="mt-3">
+    <div class="text-sm font-semibold text-[var(--color-fg)]">{role}</div>
+    <div class="text-xs text-[var(--color-muted)]">@ {company}</div>
+  </div>
+</a>
+

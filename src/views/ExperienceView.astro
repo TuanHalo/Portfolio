@@ -1,0 +1,61 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Timeline, { type TimelineEntry } from '@/components/Timeline.astro';
+import { getEducation, getExperience, getProfile } from '@/lib/content';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const [profile, experience, education] = await Promise.all([
+  getProfile(),
+  getExperience(),
+  getEducation(),
+]);
+
+const workEntries: readonly TimelineEntry[] = experience.map((item) => ({
+  title: item.data.role[lang],
+  organization: item.data.company,
+  start: item.data.start,
+  end: item.data.end,
+  location: item.data.location?.[lang],
+  highlights: item.data.highlights[lang],
+  stack: item.data.stack,
+}));
+
+const eduEntries: readonly TimelineEntry[] = education.map((item) => ({
+  title: item.data.degree[lang],
+  organization: item.data.institution[lang],
+  start: item.data.start,
+  end: item.data.end,
+  location: item.data.location?.[lang],
+  highlights: item.data.highlights?.[lang],
+}));
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('experience.title')} — ${profile.name}`}
+  description={profile.tagline[lang]}
+>
+  <div class="space-y-10">
+    <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">
+      {t('experience.title')}
+    </h1>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-[var(--color-fg)]">{t('experience.work')}</h2>
+      <Timeline {lang} items={workEntries} />
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-[var(--color-fg)]">{t('experience.education')}</h2>
+      <Timeline {lang} items={eduEntries} />
+    </section>
+  </div>
+</BaseLayout>
+

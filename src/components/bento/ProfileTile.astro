@@ -1,0 +1,56 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import { withBase } from '@/lib/url';
+
+interface Props {
+  lang: Lang;
+  name: string;
+  title: string;
+  tagline: string;
+  avatar: string;
+  availability: string;
+  class?: string;
+}
+
+const { lang, name, title, tagline, avatar, availability, class: className } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class:list={['bento-tile flex flex-col justify-between p-6', className]}>
+  <div class="flex items-start justify-between gap-4">
+    <img
+      src={withBase(avatar)}
+      alt={name}
+      width="64"
+      height="64"
+      class="h-16 w-16 rounded-full object-cover ring-2 ring-[var(--color-border)]"
+    />
+    <span class="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-1 text-xs font-medium text-[var(--color-fg)]">
+      <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+      {availability}
+    </span>
+  </div>
+
+  <div class="mt-6">
+    <h1 class="text-2xl font-bold tracking-tight text-[var(--color-fg)] sm:text-3xl">{name}</h1>
+    <p class="mt-1 text-sm font-medium text-[var(--color-accent)]">{title}</p>
+    <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{tagline}</p>
+
+    <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium">
+      <a
+        href={localizedPath(lang, 'about')}
+        class="rounded-full bg-[var(--color-fg)] px-3.5 py-1.5 text-[var(--color-tile)] transition hover:opacity-90"
+      >
+        {t('nav.about')} →
+      </a>
+      <a
+        href={localizedPath(lang, 'contact')}
+        class="rounded-full border border-[var(--color-border)] px-3.5 py-1.5 text-[var(--color-fg)] transition hover:border-[var(--color-accent)]"
+      >
+        {t('home.contactMe')}
+      </a>
+    </div>
+  </div>
+</div>
+

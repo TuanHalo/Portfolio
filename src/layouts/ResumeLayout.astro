@@ -1,0 +1,44 @@
+---
+import '@fontsource-variable/inter';
+import '@/styles/global.css';
+import type { Lang } from '@/i18n/ui';
+import { getProfile } from '@/lib/content';
+import Seo from '@/components/Seo.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const profile = await getProfile();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo {title} {description} />
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header {lang} siteName={profile.name} />
+    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8 sm:px-6 print:max-w-none print:p-0">
+      <slot />
+    </main>
+    <Footer {lang} name={profile.name} />
+  </body>
+</html>
+

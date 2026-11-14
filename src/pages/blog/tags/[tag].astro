@@ -1,0 +1,25 @@
+---
+import BlogTagView from '@/views/BlogTagView.astro';
+import { getAllBlogTags, getLocalizedBlogPosts, type LocalizedItem } from '@/lib/content';
+
+interface StaticPath {
+  params: { tag: string };
+  props: { tag: string; posts: readonly LocalizedItem<'blog'>[] };
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  const allPosts = await getLocalizedBlogPosts('en');
+  const tags = getAllBlogTags(allPosts);
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: allPosts.filter((p) => p.entry.data.tags.includes(tag)),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BlogTagView lang="en" {tag} {posts} />

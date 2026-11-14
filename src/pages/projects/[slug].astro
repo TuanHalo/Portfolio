@@ -1,0 +1,21 @@
+---
+import ProjectDetailView from '@/views/ProjectDetailView.astro';
+import { getLocalizedProjects, type LocalizedItem } from '@/lib/content';
+
+interface StaticPath {
+  params: { slug: string };
+  props: { item: LocalizedItem<'projects'> };
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  const projects = await getLocalizedProjects('en');
+  return projects.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<ProjectDetailView lang="en" {item} />

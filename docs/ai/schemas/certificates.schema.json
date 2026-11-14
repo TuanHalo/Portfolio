@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Certificates Collection",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "issuer",
+      "date"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "name": {
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "issuer": {
+        "type": "string",
+        "minLength": 1
+      },
+      "date": {
+        "type": "string",
+        "format": "date"
+      },
+      "credentialId": {
+        "type": "string"
+      },
+      "credentialUrl": {
+        "type": "string"
+      },
+      "file": {
+        "type": "string"
+      }
+    }
+  }
+}

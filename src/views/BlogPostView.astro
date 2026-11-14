@@ -1,0 +1,94 @@
+---
+import { render } from 'astro:content';
+import readingTime from 'reading-time';
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TranslationNotice from '@/components/TranslationNotice.astro';
+import { getProfile, type LocalizedItem } from '@/lib/content';
+import { formatFullDate } from '@/lib/dates';
+
+interface Props {
+  lang: Lang;
+  item: LocalizedItem<'blog'>;
+  prev?: LocalizedItem<'blog'>;
+  next?: LocalizedItem<'blog'>;
+}
+
+const { lang, item, prev, next } = Astro.props;
+const t = useTranslations(lang);
+const profile = await getProfile();
+const { Content } = await render(item.entry);
+const { title, description, date, tags, translation } = item.entry.data;
+const minutes = Math.max(1, Math.round(readingTime(item.entry.body ?? '').minutes));
+---
+
+<BaseLayout lang={lang} title={`${title} — ${profile.name}`} description={description}>
+  <article class="mx-auto max-w-3xl">
+    <a
+      href={localizedPath(lang, 'blog')}
+      class="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition"
+    >
+      ← {t('blog.back')}
+    </a>
+
+    <div class="mt-4 bento-tile p-6 sm:p-8">
+      <TranslationNotice {lang} isFallback={item.isFallback} {translation} />
+
+      <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-muted)]">
+        <time datetime={date.toISOString()}>{formatFullDate(date, lang)}</time>
+        <span>·</span>
+        <span>
+          {minutes} {t('blog.readingTime')}
+        </span>
+      </div>
+
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-[var(--color-fg)]">{title}</h1>
+
+      {
+        tags.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <a
+                href={localizedPath(lang, `blog/tags/${encodeURIComponent(tag)}`)}
+                class="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-0.5 text-xs text-[var(--color-fg)] hover:border-[var(--color-accent)]"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+
+      <div class="prose-portfolio mt-8">
+        <Content />
+      </div>
+    </div>
+
+    {
+      (prev || next) && (
+        <nav class="mt-6 grid gap-3 sm:grid-cols-2" aria-label="Post navigation">
+          {prev ? (
+            <a href={localizedPath(lang, `blog/${prev.slug}`)} class="bento-tile p-4">
+              <div class="text-xs text-[var(--color-muted)]">← {t('blog.prev')}</div>
+              <div class="mt-1 text-sm font-semibold text-[var(--color-fg)]">
+                {prev.entry.data.title}
+              </div>
+            </a>
+          ) : (
+            <div />
+          )}
+          {next && (
+            <a href={localizedPath(lang, `blog/${next.slug}`)} class="bento-tile p-4 text-right">
+              <div class="text-xs text-[var(--color-muted)]">{t('blog.next')} →</div>
+              <div class="mt-1 text-sm font-semibold text-[var(--color-fg)]">
+                {next.entry.data.title}
+              </div>
+            </a>
+          )}
+        </nav>
+      )
+    }
+  </article>
+</BaseLayout>
+

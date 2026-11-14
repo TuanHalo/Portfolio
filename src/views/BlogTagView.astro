@@ -1,0 +1,59 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getProfile, type LocalizedItem } from '@/lib/content';
+import { formatFullDate } from '@/lib/dates';
+
+interface Props {
+  lang: Lang;
+  tag: string;
+  posts: readonly LocalizedItem<'blog'>[];
+}
+
+const { lang, tag, posts } = Astro.props;
+const t = useTranslations(lang);
+const profile = await getProfile();
+---
+
+<BaseLayout
+  lang={lang}
+  title={`#${tag} — ${t('blog.title')} — ${profile.name}`}
+  description={t('blog.subtitle')}
+>
+  <div class="space-y-6">
+    <div>
+      <a
+        href={localizedPath(lang, 'blog')}
+        class="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+      >
+        ← {t('blog.back')}
+      </a>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-[var(--color-fg)]">
+        {t('blog.taggedWith')}: <span class="text-[var(--color-accent)]">#{tag}</span>
+      </h1>
+    </div>
+
+    <div class="space-y-4">
+      {
+        posts.map((post) => (
+          <article class="bento-tile p-5">
+            <div class="text-xs text-[var(--color-muted)]">
+              {formatFullDate(post.entry.data.date, lang)}
+            </div>
+            <h2 class="mt-1 text-lg font-semibold text-[var(--color-fg)]">
+              <a
+                href={localizedPath(lang, `blog/${post.slug}`)}
+                class="hover:text-[var(--color-accent)] transition"
+              >
+                {post.entry.data.title}
+              </a>
+            </h2>
+            <p class="mt-1 text-sm text-[var(--color-muted)]">{post.entry.data.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+

@@ -1,0 +1,27 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  years: number;
+  class?: string;
+}
+
+const { lang, years, class: className } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<a
+  href={localizedPath(lang, 'experience')}
+  class:list={[
+    'bento-tile flex flex-col justify-between p-5 border-transparent bg-amber-300 text-zinc-900 dark:bg-amber-400',
+    className,
+  ]}
+>
+  <span class="text-xs font-medium text-zinc-800">{t('home.yearsExp')}</span>
+  <div class="mt-4 text-2xl font-bold tracking-tight">
+    {years}{t('home.yearsSuffix')}
+  </div>
+</a>
+

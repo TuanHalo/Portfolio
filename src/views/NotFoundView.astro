@@ -1,0 +1,29 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={`404 — ${t('notFound.title')}`} description={t('notFound.message')} pagefindIgnore>
+  <div class="mx-auto max-w-lg py-12 text-center">
+    <div class="bento-tile p-8">
+      <div class="text-5xl font-bold text-[var(--color-accent)]">404</div>
+      <h1 class="mt-3 text-2xl font-bold text-[var(--color-fg)]">{t('notFound.title')}</h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t('notFound.message')}</p>
+      <a
+        href={localizedPath(lang, '')}
+        class="mt-6 inline-block rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-xs font-medium text-[var(--color-tile)] transition hover:opacity-90"
+      >
+        {t('notFound.home')} →
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+

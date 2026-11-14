@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=../docs/ai/schemas/profile.schema.json
+- id: me
+  name: Minh Tuấn
+  handle: TuanHalo
+  title:
+    en: Software Engineer
+    vi: Kỹ sư phần mềm
+  tagline:
+    en: Crafting fast, reliable web products from Vietnam
+    vi: Xây dựng sản phẩm web nhanh và ổn định từ Việt Nam
+  bio:
+    en: |
+      I'm a software engineer focused on full-stack web applications, developer tooling, and clean system architecture.
+      I care about crisp interfaces, strong type safety, and software that stays maintainable years after launch.
+    vi: |
+      Tôi là kỹ sư phần mềm tập trung vào ứng dụng web full-stack, công cụ phát triển và kiến trúc hệ thống gọn gàng.
+      Tôi chú trọng giao diện rõ ràng, kiểm soát kiểu dữ liệu chặt chẽ và mã nguồn dễ bảo trì lâu dài.
+  location:
+    en: Ho Chi Minh City, Vietnam
+    vi: TP. Hồ Chí Minh, Việt Nam
+  availability:
+    en: Open to interesting projects
+    vi: Sẵn sàng cho các dự án thú vị
+  email: tuanhalo@example.com
+  avatar: /photos/avatar.svg
+  careerStart: 2021-06-01
+  socials:
+    github: https://github.com/TuanHalo
+    linkedin: https://www.linkedin.com/in/tuanhalo
+    facebook: ''
+    x: ''
+    website: https://tuanhalo.github.io/Portfolio/
+

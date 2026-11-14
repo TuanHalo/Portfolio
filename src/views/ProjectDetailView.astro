@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TranslationNotice from '@/components/TranslationNotice.astro';
+import { getProfile, type LocalizedItem } from '@/lib/content';
+import { formatFullDate } from '@/lib/dates';
+
+interface Props {
+  lang: Lang;
+  item: LocalizedItem<'projects'>;
+}
+
+const { lang, item } = Astro.props;
+const t = useTranslations(lang);
+const profile = await getProfile();
+const { Content } = await render(item.entry);
+const { title, summary, cover, coverAlt, tags, date, links, translation } = item.entry.data;
+---
+
+<BaseLayout lang={lang} title={`${title} — ${profile.name}`} description={summary}>
+  <article class="mx-auto max-w-3xl">
+    <a
+      href={localizedPath(lang, 'projects')}
+      class="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition"
+    >
+      ← {t('projects.back')}
+    </a>
+
+    <div class="mt-4 bento-tile p-6 sm:p-8">
+      <TranslationNotice {lang} isFallback={item.isFallback} {translation} />
+
+      <div class="text-xs text-[var(--color-muted)]">{formatFullDate(date, lang)}</div>
+      <h1 class="mt-1 text-3xl font-bold tracking-tight text-[var(--color-fg)]">{title}</h1>
+      <p class="mt-2 text-base text-[var(--color-muted)]">{summary}</p>
+
+      <div class="mt-4 flex flex-wrap items-center gap-2">
+        {
+          tags.map((tag) => (
+            <span class="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-0.5 text-xs text-[var(--color-fg)]">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      {
+        (links.demo || links.repo) && (
+          <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium">
+            {links.demo && (
+              <a
+                href={links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-full bg-[var(--color-accent)] px-4 py-2 text-white transition hover:bg-[var(--color-accent-hover)]"
+              >
+                {t('projects.demo')} ↗
+              </a>
+            )}
+            {links.repo && (
+              <a
+                href={links.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-full border border-[var(--color-border)] px-4 py-2 text-[var(--color-fg)] transition hover:border-[var(--color-accent)]"
+              >
+                {t('projects.repo')} ↗
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      {
+        cover && (
+          <div class="mt-6 overflow-hidden rounded-xl border border-[var(--color-border)]">
+            <Image src={cover} alt={coverAlt ?? title} class="w-full object-cover" />
+          </div>
+        )
+      }
+
+      <div class="prose-portfolio mt-8">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+

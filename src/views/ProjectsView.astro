@@ -1,0 +1,104 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLocalizedProjects, getProfile } from '@/lib/content';
+import ProjectCard from '@/components/ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const [profile, projects] = await Promise.all([getProfile(), getLocalizedProjects(lang)]);
+
+const allTags = [...new Set(projects.flatMap((p) => p.entry.data.tags))].sort((a, b) =>
+  a.localeCompare(b),
+);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('projects.title')} — ${profile.name}`}
+  description={t('projects.subtitle')}
+>
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">
+        {t('projects.title')}
+      </h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t('projects.subtitle')}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects by tag">
+      <button
+        type="button"
+        data-tag-filter="all"
+        class="rounded-full bg-[var(--color-fg)] px-3.5 py-1.5 text-xs font-medium text-[var(--color-tile)] transition cursor-pointer"
+      >
+        {t('projects.allTags')}
+      </button>
+      {
+        allTags.map((tag) => (
+          <button
+            type="button"
+            data-tag-filter={tag}
+            class="rounded-full border border-[var(--color-border)] bg-[var(--color-tile)] px-3.5 py-1.5 text-xs font-medium text-[var(--color-muted)] transition hover:text-[var(--color-fg)] cursor-pointer"
+          >
+            {tag}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((item) => (
+          <ProjectCard
+            {lang}
+            slug={item.slug}
+            title={item.entry.data.title}
+            summary={item.entry.data.summary}
+            cover={item.entry.data.cover}
+            coverAlt={item.entry.data.coverAlt}
+            tags={item.entry.data.tags}
+            featured={item.entry.data.featured}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <script>
+    function initProjectFilter(): void {
+      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-tag-filter]');
+      const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+
+      buttons.forEach((btn) => {
+        if (btn.dataset.bound === 'true') return;
+        btn.dataset.bound = 'true';
+        btn.addEventListener('click', () => {
+          const selected = btn.dataset.tagFilter ?? 'all';
+          buttons.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle('bg-[var(--color-fg)]', active);
+            b.classList.toggle('text-[var(--color-tile)]', active);
+            b.classList.toggle('border', !active);
+            b.classList.toggle('border-[var(--color-border)]', !active);
+            b.classList.toggle('bg-[var(--color-tile)]', !active);
+            b.classList.toggle('text-[var(--color-muted)]', !active);
+          });
+
+          cards.forEach((card) => {
+            const tags = (card.dataset.tags ?? '').split(',');
+            const show = selected === 'all' || tags.includes(selected);
+            card.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    }
+    initProjectFilter();
+  </script>
+</BaseLayout>
+

@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=../docs/ai/schemas/experience.schema.json
+- id: senior-engineer-company-a
+  company: Acme Tech Vietnam
+  role:
+    en: Senior Software Engineer
+    vi: Kỹ sư phần mềm cấp cao
+  start: 2023-07-01
+  location:
+    en: Ho Chi Minh City (Hybrid)
+    vi: TP. Hồ Chí Minh (Hybrid)
+  highlights:
+    en:
+      - Architected a multi-tenant web dashboard serving 40,000+ monthly active users with TypeScript and React.
+      - Reduced p95 API latency by 38% through query batching and edge caching.
+      - Mentored 4 junior engineers through code reviews and weekly architecture sessions.
+    vi:
+      - Thiết kế kiến trúc dashboard web đa khách hàng phục vụ hơn 40.000 người dùng mỗi tháng bằng TypeScript và React.
+      - Giảm độ trễ API p95 xuống 38% nhờ gộp truy vấn và bộ nhớ đệm ở tầng biên.
+      - Hướng dẫn 4 kỹ sư trẻ qua review mã nguồn và các buổi trao đổi kiến trúc hàng tuần.
+  stack:
+    - TypeScript
+    - React
+    - Node.js
+    - PostgreSQL
+    - Docker
+
+- id: software-engineer-company-b
+  company: Nova Studio
+  role:
+    en: Full-Stack Software Engineer
+    vi: Kỹ sư phần mềm Full-Stack
+  start: 2021-06-01
+  end: 2023-06-15
+  location:
+    en: Ho Chi Minh City
+    vi: TP. Hồ Chí Minh
+  highlights:
+    en:
+      - Built and shipped 6 client web applications using Next.js, Go, and PostgreSQL.
+      - Automated CI/CD pipelines with GitHub Actions, cutting release times from 25 minutes to 4 minutes.
+    vi:
+      - Xây dựng và bàn giao 6 ứng dụng web cho khách hàng bằng Next.js, Go và PostgreSQL.
+      - Tự động hóa quy trình CI/CD với GitHub Actions, rút ngắn thời gian phát hành từ 25 phút xuống 4 phút.
+  stack:
+    - TypeScript
+    - Next.js
+    - Go
+    - PostgreSQL
+    - GitHub Actions
+

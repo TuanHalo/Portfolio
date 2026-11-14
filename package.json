@@ -1,0 +1,32 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check && tsc --noEmit",
+    "build": "astro build && pagefind --site dist",
+    "build:pdf": "tsx scripts/generate-resume-pdf.ts",
+    "schemas": "tsx scripts/export-schemas.ts",
+    "validate": "astro sync && tsx scripts/validate-content.ts && pnpm check",
+    "preview": "astro preview",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/sitemap": "^3.7.5",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^5.18.2",
+    "pagefind": "^1.6.0",
+    "reading-time": "^1.5.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.5",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^5.8.0"
+  }
+}

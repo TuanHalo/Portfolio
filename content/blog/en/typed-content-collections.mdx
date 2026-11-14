@@ -1,0 +1,19 @@
+---
+title: Notes on Typed Content Collections
+description: Using Zod schemas to keep YAML and MDX portfolio data consistent and safe for AI edits.
+date: 2026-11-12
+tags:
+  - TypeScript
+  - Architecture
+draft: false
+translation: human
+---
+
+## Catching Mistakes Before Deploy
+
+When a portfolio grows over years—especially when both you and AI assistants update it—small typos like a malformed date or a missing image path can easily slip in.
+
+By defining strict schemas in `src/content.config.ts` and pairing them with `pnpm validate`, any invalid entry fails immediately in the terminal before it ever reaches production.
+
+> This post intentionally has no Vietnamese file yet so you can preview the untranslated-content fallback notice on `/vi/blog/typed-content-collections/`.
+

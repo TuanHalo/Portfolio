@@ -1,0 +1,36 @@
+---
+title: Project Alpha
+summary: Multi-tenant analytics dashboard built with TypeScript, React, and edge caching.
+cover: ../_images/project-alpha.svg
+coverAlt: Project Alpha dashboard interface preview
+tags:
+  - TypeScript
+  - React
+  - PostgreSQL
+date: 2025-11-10
+featured: true
+translation: human
+links:
+  demo: https://example.com/project-alpha
+  repo: https://github.com/TuanHalo/Portfolio
+---
+
+## Overview
+
+Project Alpha is a sample case study demonstrating how your portfolio presents real engineering work. Replace this file with your own project details.
+
+## The Problem
+
+Teams needed a fast way to inspect real-time usage metrics across dozens of workspaces without waiting several seconds for heavy SQL aggregations on every page load.
+
+## Architecture & Approach
+
+- **Typed API Layer**: Shared Zod schemas between backend handlers and frontend hooks eliminated contract drift.
+- **Query Batching**: Coalesced concurrent dashboard widget queries into a single round trip.
+- **Incremental Caching**: Pre-aggregated hourly rollups in PostgreSQL kept p95 latency under 120ms.
+
+## Outcome
+
+- Served **40,000+ monthly active users** with zero downtime during peak traffic.
+- Cut p95 API response time by **38%**.
+

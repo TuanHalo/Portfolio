@@ -1,0 +1,25 @@
+---
+title: Dự án Beta
+summary: Công cụ CLI nhẹ viết bằng Go để kiểm tra cấu hình triển khai và biến môi trường trước khi chạy CI.
+cover: ../_images/project-beta.svg
+coverAlt: Giao diện dòng lệnh của Dự án Beta
+tags:
+  - Go
+  - CLI
+  - Docker
+date: 2025-04-18
+featured: false
+translation: human
+links:
+  repo: https://github.com/TuanHalo/Portfolio
+---
+
+## Tổng quan
+
+Dự án Beta là công cụ dòng lệnh viết bằng Go giúp phát hiện sớm lỗi thiếu biến môi trường hoặc xung đột cổng Docker trước khi pipeline CI chạy.
+
+## Điểm nổi bật
+
+- **Không phụ thuộc runtime**: Đóng gói thành một tệp nhị phân tĩnh duy nhất cho Linux, macOS và Windows.
+- **Thông báo lỗi rõ ràng**: Xuất định dạng `file:line: rule-id` tương thích trực tiếp với GitHub Actions.
+

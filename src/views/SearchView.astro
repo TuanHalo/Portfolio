@@ -1,0 +1,63 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getProfile } from '@/lib/content';
+import { withBase } from '@/lib/url';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const profile = await getProfile();
+const pagefindCss = withBase('/pagefind/pagefind-ui.css');
+const pagefindJs = withBase('/pagefind/pagefind-ui.js');
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('search.title')} — ${profile.name}`}
+  description={t('search.subtitle')}
+  pagefindIgnore
+>
+  <div class="mx-auto max-w-3xl space-y-6">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">
+        {t('search.title')}
+      </h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t('search.subtitle')}</p>
+    </div>
+
+    <div class="bento-tile p-5 sm:p-6">
+      <div id="search-container"></div>
+      <p id="search-fallback" class="hidden text-xs text-[var(--color-muted)]">
+        {t('search.devNotice')}
+      </p>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href={pagefindCss} />
+  <script is:inline define:vars={{ pagefindJs, placeholder: t('search.placeholder') }}>
+    (function () {
+      var script = document.createElement('script');
+      script.src = pagefindJs;
+      script.onload = function () {
+        if (window.PagefindUI) {
+          new window.PagefindUI({
+            element: '#search-container',
+            showSubResults: true,
+            translations: { placeholder: placeholder },
+          });
+        }
+      };
+      script.onerror = function () {
+        var el = document.getElementById('search-fallback');
+        if (el) el.classList.remove('hidden');
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+</BaseLayout>
+

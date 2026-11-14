@@ -1,0 +1,47 @@
+---
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CertificateCard from '@/components/CertificateCard.astro';
+import { getCertificates, getProfile } from '@/lib/content';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const [profile, certificates] = await Promise.all([getProfile(), getCertificates()]);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('certificates.title')} — ${profile.name}`}
+  description={t('certificates.subtitle')}
+>
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">
+        {t('certificates.title')}
+      </h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t('certificates.subtitle')}</p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        certificates.map((cert) => (
+          <CertificateCard
+            {lang}
+            name={cert.data.name[lang]}
+            issuer={cert.data.issuer}
+            date={cert.data.date}
+            credentialId={cert.data.credentialId}
+            credentialUrl={cert.data.credentialUrl}
+            file={cert.data.file}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+

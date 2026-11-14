@@ -1,0 +1,10 @@
+- id: certificate-slug
+  name:
+    en: Certificate Name
+    vi: Tên chứng chỉ
+  issuer: Issuing Organization
+  date: 2026-01-15
+  credentialId: OPTIONAL-ID
+  credentialUrl: https://example.com/verify
+  file: /certificates/certificate-slug.pdf
+

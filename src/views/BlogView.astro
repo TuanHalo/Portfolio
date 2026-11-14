@@ -1,0 +1,101 @@
+---
+import readingTime from 'reading-time';
+import type { Lang } from '@/i18n/ui';
+import { localizedPath, useTranslations } from '@/i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllBlogTags, getLocalizedBlogPosts, getProfile } from '@/lib/content';
+import { formatFullDate } from '@/lib/dates';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const [profile, posts] = await Promise.all([getProfile(), getLocalizedBlogPosts(lang)]);
+const tags = getAllBlogTags(posts);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('blog.title')} — ${profile.name}`}
+  description={t('blog.subtitle')}
+>
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">{t('blog.title')}</h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t('blog.subtitle')}</p>
+    </div>
+
+    {
+      tags.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-medium text-[var(--color-muted)]">{t('blog.allTags')}:</span>
+          {tags.map((tag) => (
+            <a
+              href={localizedPath(lang, `blog/tags/${encodeURIComponent(tag)}`)}
+              class="rounded-full border border-[var(--color-border)] bg-[var(--color-tile)] px-3 py-1 text-xs text-[var(--color-fg)] transition hover:border-[var(--color-accent)]"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="space-y-4">
+      {
+        posts.map((post) => {
+          const stats = readingTime(post.entry.body ?? '');
+          const minutes = Math.max(1, Math.round(stats.minutes));
+          return (
+            <article class="bento-tile p-5 sm:p-6">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-muted)]">
+                <time datetime={post.entry.data.date.toISOString()}>
+                  {formatFullDate(post.entry.data.date, lang)}
+                </time>
+                <span>·</span>
+                <span>
+                  {minutes} {t('blog.readingTime')}
+                </span>
+              </div>
+
+              <h2 class="mt-2 text-xl font-semibold text-[var(--color-fg)]">
+                <a
+                  href={localizedPath(lang, `blog/${post.slug}`)}
+                  class="hover:text-[var(--color-accent)] transition"
+                >
+                  {post.entry.data.title}
+                </a>
+              </h2>
+
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
+                {post.entry.data.description}
+              </p>
+
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap gap-1.5">
+                  {post.entry.data.tags.map((tag) => (
+                    <a
+                      href={localizedPath(lang, `blog/tags/${encodeURIComponent(tag)}`)}
+                      class="rounded-full bg-[var(--color-bg)] px-2.5 py-0.5 text-xs text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+                    >
+                      #{tag}
+                    </a>
+                  ))}
+                </div>
+                <a
+                  href={localizedPath(lang, `blog/${post.slug}`)}
+                  class="text-xs font-medium text-[var(--color-accent)] hover:underline"
+                >
+                  {t('blog.readMore')} →
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>
+

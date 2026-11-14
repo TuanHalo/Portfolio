@@ -1,0 +1,29 @@
+---
+import BlogPostView from '@/views/BlogPostView.astro';
+import { getLocalizedBlogPosts, type LocalizedItem } from '@/lib/content';
+
+interface StaticPath {
+  params: { slug: string };
+  props: {
+    item: LocalizedItem<'blog'>;
+    prev?: LocalizedItem<'blog'>;
+    next?: LocalizedItem<'blog'>;
+  };
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  const posts = await getLocalizedBlogPosts('vi');
+  return posts.map((item, idx) => ({
+    params: { slug: item.slug },
+    props: {
+      item,
+      prev: posts[idx + 1],
+      next: posts[idx - 1],
+    },
+  }));
+}
+
+const { item, prev, next } = Astro.props;
+---
+
+<BlogPostView lang="vi" {item} {prev} {next} />
