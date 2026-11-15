@@ -1,6 +1,6 @@
 ---
 title: Algorithm Hub
-summary: Nền tảng học thuật toán và nhật ký giải bài tập tương tác với mô phỏng từng bước, mã nguồn Python và phân tích độ phức tạp.
+summary: Trang học thuật toán và nhật ký giải bài với trình mô phỏng từng bước, mã nguồn Python và phân tích độ phức tạp.
 cover: ../_images/algorithm.jpg
 coverAlt: Minh họa biểu đồ cột sắp xếp và đồ thị nút của Algorithm Hub
 tags:
@@ -10,7 +10,7 @@ tags:
   - Algorithms
 date: 2026-11-14
 featured: true
-translation: machine
+translation: human
 links:
   demo: https://tuanhalo.github.io/Algorithm/
   repo: https://github.com/TuanHalo/Algorithm
@@ -18,15 +18,14 @@ links:
 
 ## Tổng quan
 
-`Algorithm Hub` là nền tảng học thuật toán tương tác và nhật ký giải bài tập cá nhân xây dựng bằng Astro và TypeScript, giúp trực quan hóa thuật toán cốt lõi và các bài toán phỏng vấn trên giao diện Claymorphism.
+`Algorithm Hub` là trang học thuật toán và nhật ký giải bài cá nhân xây dựng bằng Astro và TypeScript, dùng trình mô phỏng trực quan trên giao diện Claymorphism để đi qua các thuật toán nền tảng và bài tập phỏng vấn.
 
 ## Nội dung chính
 
-- **Góc học tập (`/learn/`)**: Xây dựng lộ trình gồm 10 chủ đề thuật toán cốt lõi—trong đó **Sorting** và **Searching** đã có bài học tương tác kèm mô phỏng từng bước, mã nguồn Python sạch, bảng so sánh và phân tích độ phức tạp; đồng thời chuẩn bị sẵn khung nội dung cho **Graph**, **Dynamic Programming**, **Tree**, **Linked List**, **Stack & Queue**, **Hashing**, **Greedy** và **Backtracking**.
-- **Nhật ký giải bài (`/problems/`)**: Tổng hợp lời giải các bài toán LeetCode và HackerRank với hướng tiếp cận, mã nguồn, các trường hợp biên và ghi chú rà soát bằng AI.
+Phần bài học (`/learn/`) chia theo 10 chủ đề thuật toán cốt lõi. Sorting và Searching đã có bài tương tác kèm mô phỏng từng bước, mã nguồn Python, bảng so sánh và phân tích độ phức tạp. Các chủ đề Graph, Dynamic Programming, Tree, Linked List, Stack & Queue, Hashing, Greedy và Backtracking đã có sẵn khung lộ trình.
 
-## Kiến trúc & Cách tiếp cận
+Phần nhật ký giải bài (`/problems/`) tổng hợp lời giải cho các bài LeetCode và HackerRank, ghi lại hướng tiếp cận, mã nguồn, các trường hợp biên và ghi chú rà soát cùng AI.
 
-- **Tích hợp trình mô phỏng riêng**: Xây dựng Astro integration (`src/integrations/visualizers`) để đóng gói các trình mô phỏng sắp xếp và tìm kiếm vào bản build tĩnh.
-- **Sơ đồ luồng xử lý**: Kết hợp các sơ đồ Archify (`public/diagrams/`) minh họa luồng chạy của Binary Search, Quick Sort, Merge Sort, Heap Sort và Two Sum.
-- **Tĩnh và tối ưu tốc độ**: Sử dụng Astro 5, tô sáng cú pháp với Shiki và triển khai tự động lên GitHub Pages.
+## Kiến trúc và cách tiếp cận
+
+Một Astro integration riêng (`src/integrations/visualizers`) đóng gói các trình mô phỏng sắp xếp và tìm kiếm trực tiếp vào bản build tĩnh. Các sơ đồ Archify (`public/diagrams/`) minh họa luồng chạy của Binary Search, Quick Sort, Merge Sort, Heap Sort và Two Sum. Trang dùng Astro 5, tô sáng cú pháp bằng Shiki và deploy lên GitHub Pages.

@@ -1,6 +1,6 @@
 ---
 title: Algorithm Hub
-summary: Interactive algorithm learning platform and problem-solving journal with step-by-step visualizers, Python code, and complexity analysis.
+summary: Algorithm study site and problem-solving journal with step-by-step visualizers, Python solutions, and complexity breakdowns.
 cover: ../_images/algorithm.jpg
 coverAlt: Algorithm Hub interactive sorting bars and graph node visualization
 tags:
@@ -18,15 +18,14 @@ links:
 
 ## Overview
 
-`Algorithm Hub` is an interactive learning platform and personal problem-solving journal built with Astro and TypeScript, designed to make core algorithms and coding interview problems visual and approachable through a Claymorphism UI.
+`Algorithm Hub` is an algorithm study site and problem-solving journal built with Astro and TypeScript, using interactive visualizations and a Claymorphism UI to walk through core algorithms and interview problems.
 
-## What's Inside
+## What's inside
 
-- **Teaching Hub (`/learn/`)**: Organized across 10 core algorithm topics—with interactive lessons, step-by-step simulations, Python implementations, comparison matrices, and complexity breakdowns already live for **Sorting** and **Searching**, and structured topic roadmaps ready for **Graph**, **Dynamic Programming**, **Tree**, **Linked List**, **Stack & Queue**, **Hashing**, **Greedy**, and **Backtracking**.
-- **Problem Journal (`/problems/`)**: Structured write-ups for LeetCode and HackerRank problems documenting my approach, solution code, edge cases, and AI-assisted review notes.
+The teaching section (`/learn/`) is organized around 10 core topics. Sorting and Searching already have interactive lessons with step-by-step simulations, Python implementations, comparison tables, and complexity breakdowns. Graph, Dynamic Programming, Tree, Linked List, Stack & Queue, Hashing, Greedy, and Backtracking have topic roadmaps in place.
 
-## Architecture & Approach
+The problem journal (`/problems/`) collects LeetCode and HackerRank write-ups with my approach, solution code, edge cases, and AI-assisted review notes.
 
-- **Custom Visualizer Integration**: Built a dedicated Astro integration (`src/integrations/visualizers`) that bundles standalone interactive sorting and searching visualizers directly into the static output.
-- **Workflow & Dataflow Diagrams**: Embedded generated Archify diagrams (`public/diagrams/`) to trace execution flow for algorithms like Binary Search, Quick Sort, Merge Sort, Heap Sort, and Two Sum.
-- **Static & Fast**: Powered by Astro 5, Shiki syntax highlighting, and automated static deployment to GitHub Pages.
+## Architecture and approach
+
+A custom Astro integration (`src/integrations/visualizers`) bundles standalone sorting and searching visualizers directly into the static build. Generated Archify diagrams (`public/diagrams/`) trace the execution flow for Binary Search, Quick Sort, Merge Sort, Heap Sort, and Two Sum. The site runs on Astro 5 with Shiki syntax highlighting and deploys to GitHub Pages.

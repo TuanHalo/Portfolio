@@ -1,6 +1,6 @@
 ---
 title: AI-Usage
-summary: Canonical AI asset hub that validates and syncs skills, rules, and agents across Antigravity, Cursor, Claude Code, and Gemini CLI.
+summary: Single repository that validates and syncs AI skills, rules, and agents across Antigravity, Cursor, Claude Code, and Gemini CLI.
 cover: ../_images/ai-usage.jpg
 coverAlt: AI-Usage canonical asset repository syncing to Antigravity, Cursor, Claude Code, and Gemini CLI
 tags:
@@ -18,15 +18,14 @@ links:
 
 ## Overview
 
-`AI-Usage` is my single source of truth for authoring, validating, and distributing AI coding assets—including skills, rules, agent personas, and engineering principles—while publishing an interactive Claymorphism documentation hub and deliverable reports on GitHub Pages.
+`AI-Usage` stores and validates my AI coding assets (skills, rules, agent personas, and engineering principles) in one repository, syncs them to each tool I use, and publishes a Claymorphism documentation site and deliverable reports on GitHub Pages.
 
-## The Problem
+## The problem
 
-Using multiple AI coding assistants (`Antigravity`, `Cursor`, `Claude Code`, and `Gemini CLI`) meant duplicating instructions across incompatible global config formats and paths. Keeping standards, style guides, and workflows consistent by hand quickly drifted out of sync.
+Using `Antigravity`, `Cursor`, `Claude Code`, and `Gemini CLI` side by side meant copying the same instructions into different config formats and paths. Updating them by hand quickly left the tools out of sync.
 
-## Architecture & Approach
+## Architecture and approach
 
-- **Canonical Authoring**: Skills, rules, agents, and principles live once under `assets/` in structured Markdown and YAML.
-- **Declarative Contracts**: `content-contract.yaml`, `style-contract.yaml`, and `output-contract.yaml` paired with JSON Schemas enforce consistent structure and token limits.
-- **Multi-Tool Sync Engine**: A PowerShell orchestrator (`scripts/sync.ps1`) with per-tool transforms and `-DryRun` / `-ValidateOnly` modes maps assets to each tool's native format (`SKILL.md`, `AGENTS.md`, `.mdc`, `CLAUDE.md`, `GEMINI.md`).
-- **Automated Docs Site**: An Astro 5 site under `site/` with a Claymorphism design system bundles deliverables and deploys to GitHub Pages via GitHub Actions.
+All skills, rules, agents, and principles live once under `assets/` in Markdown and YAML. To keep structure and token limits consistent, `content-contract.yaml`, `style-contract.yaml`, and `output-contract.yaml` pair with JSON Schemas during validation.
+
+A PowerShell script (`scripts/sync.ps1`) converts those files into each assistant's native format (`SKILL.md`, `AGENTS.md`, `.mdc`, `CLAUDE.md`, and `GEMINI.md`), with `-DryRun` and `-ValidateOnly` flags for safe checks before writing. An Astro 5 site under `site/` then packages the documentation and deliverable reports using a Claymorphism design system and deploys to GitHub Pages via GitHub Actions.
