@@ -6,37 +6,34 @@
   items:
     - TypeScript
     - JavaScript
-    - Go
-    - SQL
+    - Python
+    - C++
     - HTML / CSS
 
 - id: frontend
   category:
-    en: Frontend
+    en: Frontend & UI
     vi: Giao diện (Frontend)
   items:
-    - Astro
     - React
-    - Next.js
     - Tailwind CSS
 
 - id: backend
   category:
-    en: Backend & Data
-    vi: Backend & Dữ liệu
+    en: Backend & Observability
+    vi: Backend & Giám sát hệ thống
   items:
     - Node.js
-    - PostgreSQL
-    - Redis
-    - REST & GraphQL
+    - REST APIs
+    - OpenSearch
+    - Grafana
 
-- id: devops
+- id: engineering
   category:
-    en: Tooling & Cloud
-    vi: Công cụ & Đám mây
+    en: Engineering & Tooling
+    vi: Kỹ thuật & Công cụ
   items:
     - Git & GitHub Actions
-    - Docker
-    - Linux
-    - Playwright
-
+    - Dynamic Form Engines
+    - Web Accessibility (A11y)
+    - Algorithms & DSA

@@ -1,21 +1,20 @@
 # yaml-language-server: $schema=../docs/ai/schemas/education.schema.json
-- id: bsc-computer-science
+- id: bachelor-software-engineering-uit
   institution:
     en: University of Information Technology (VNU-HCM)
     vi: Trường Đại học Công nghệ Thông tin (ĐHQG-HCM)
   degree:
-    en: B.Sc. in Computer Science
-    vi: Cử nhân Khoa học Máy tính
-  start: 2017-09-01
-  end: 2021-05-30
+    en: Bachelor of Software Engineering
+    vi: Cử nhân Kỹ thuật phần mềm
+  start: 2013-09-01
+  end: 2018-05-31
   location:
     en: Ho Chi Minh City, Vietnam
     vi: TP. Hồ Chí Minh, Việt Nam
   highlights:
     en:
-      - Graduated with Honors (GPA 3.6/4.0).
-      - Capstone project on distributed task scheduling in Go.
+      - "Pre-university honor (2013): 3rd Prize, Vietnam National Informatics Olympiad (High School)."
+      - "Pre-university honor (2013): Consolation Prize, 19th National Young Informatics Competition."
     vi:
-      - Tốt nghiệp loại Giỏi (GPA 3.6/4.0).
-      - Khóa luận tốt nghiệp về lập lịch tác vụ phân tán bằng Go.
-
+      - "Thành tích THPT (2013): Giải Ba Kỳ thi Học sinh giỏi Quốc gia môn Tin học."
+      - "Thành tích THPT (2013): Giải Khuyến khích Hội thi Tin học trẻ toàn quốc lần thứ XIX."

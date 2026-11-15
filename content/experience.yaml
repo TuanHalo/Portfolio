@@ -1,50 +1,99 @@
 # yaml-language-server: $schema=../docs/ai/schemas/experience.schema.json
-- id: senior-engineer-company-a
-  company: Acme Tech Vietnam
+- id: fullstack-engineer-nab
+  company: NAB Innovation Centre Vietnam
   role:
-    en: Senior Software Engineer
-    vi: Kỹ sư phần mềm cấp cao
-  start: 2023-07-01
+    en: Fullstack Engineer
+    vi: Kỹ sư Fullstack
+  start: 2025-04-01
   location:
-    en: Ho Chi Minh City (Hybrid)
-    vi: TP. Hồ Chí Minh (Hybrid)
+    en: Ho Chi Minh City, Vietnam
+    vi: TP. Hồ Chí Minh, Việt Nam
   highlights:
     en:
-      - Architected a multi-tenant web dashboard serving 40,000+ monthly active users with TypeScript and React.
-      - Reduced p95 API latency by 38% through query batching and edge caching.
-      - Mentored 4 junior engineers through code reviews and weekly architecture sessions.
+      - Built and standardized 30+ reusable components for an internal dynamic form engine powering 100+ forms across banking shells (nabONE, nabTrade, nabConnect) with 100,000+ monthly banker and customer visits, decomposing complex components by purpose to reduce duplication and speed up form delivery.
+      - Optimized form submission workflows using frontend debouncing and backend request batching to satisfy downstream API limits and lower server call volume, while auditing shared component dependencies before uplifts to prevent regressions.
+      - Standardized backend structured logging across multi-API form orchestration flows, enabling OpenSearch dashboards and alerts (with Grafana performance checks) to track form metrics and quickly identify forms impacted by API outages.
+      - Shipped 10+ bug fixes and accessibility improvements to NAB's MUI-based Elevate UI library, earning team recognition three times.
     vi:
-      - Thiết kế kiến trúc dashboard web đa khách hàng phục vụ hơn 40.000 người dùng mỗi tháng bằng TypeScript và React.
-      - Giảm độ trễ API p95 xuống 38% nhờ gộp truy vấn và bộ nhớ đệm ở tầng biên.
-      - Hướng dẫn 4 kỹ sư trẻ qua review mã nguồn và các buổi trao đổi kiến trúc hàng tuần.
+      - Xây dựng và chuẩn hóa hơn 30 component tái sử dụng cho hệ thống tạo form động nội bộ vận hành hơn 100 form trên các nền tảng ngân hàng (nabONE, nabTrade, nabConnect) với hơn 100.000 lượt truy cập mỗi tháng, tách nhỏ component phức tạp theo mục đích để giảm trùng lặp và tăng tốc triển khai.
+      - Tối ưu hóa luồng gửi form bằng debouncing ở frontend và batching request ở backend nhằm đáp ứng giới hạn API và giảm tải gọi server, đồng thời rà soát ảnh hưởng của các component dùng chung trước mỗi lần nâng cấp để tránh lỗi hồi quy.
+      - Chuẩn hóa định dạng log backend cho các luồng form gọi nhiều API, hỗ trợ xây dựng dashboard và cảnh báo trên OpenSearch (kết hợp Grafana kiểm thử hiệu năng) giúp theo dõi chỉ số form và khoanh vùng nhanh các form bị ảnh hưởng khi API gặp sự cố.
+      - Đóng góp hơn 10 bản sửa lỗi và cải thiện khả năng truy cập (accessibility) cho thư viện giao diện Elevate trên nền MUI của NAB, nhận được 3 lần ghi nhận từ nhóm.
   stack:
     - TypeScript
     - React
     - Node.js
-    - PostgreSQL
-    - Docker
+    - MUI
+    - OpenSearch
+    - Grafana
 
-- id: software-engineer-company-b
-  company: Nova Studio
+- id: frontend-engineer-sanbul
+  company: Sanbul Solution
   role:
-    en: Full-Stack Software Engineer
-    vi: Kỹ sư phần mềm Full-Stack
-  start: 2021-06-01
-  end: 2023-06-15
+    en: Frontend Engineer
+    vi: Kỹ sư Frontend
+  start: 2023-06-01
+  end: 2023-09-30
   location:
-    en: Ho Chi Minh City
-    vi: TP. Hồ Chí Minh
+    en: Ho Chi Minh City, Vietnam
+    vi: TP. Hồ Chí Minh, Việt Nam
   highlights:
     en:
-      - Built and shipped 6 client web applications using Next.js, Go, and PostgreSQL.
-      - Automated CI/CD pipelines with GitHub Actions, cutting release times from 25 minutes to 4 minutes.
+      - Built customer-facing interactive web interfaces with React and Three.js, upgrading key product visualizations from 2D to 3D.
+      - Developed internal administration portal features in Vue.js and integrated backend APIs to support daily management workflows.
+      - Reduced page load time by ~10% and eliminated unnecessary re-renders through memoization, state splitting, and lazy loading.
     vi:
-      - Xây dựng và bàn giao 6 ứng dụng web cho khách hàng bằng Next.js, Go và PostgreSQL.
-      - Tự động hóa quy trình CI/CD với GitHub Actions, rút ngắn thời gian phát hành từ 25 phút xuống 4 phút.
+      - Phát triển giao diện web tương tác hướng tới khách hàng bằng React và Three.js, nâng cấp nhiều phần hiển thị trực quan từ 2D lên 3D.
+      - Xây dựng các tính năng cho cổng quản trị nội bộ bằng Vue.js và tích hợp API backend phục vụ quy trình vận hành hàng ngày.
+      - Giảm khoảng 10% thời gian tải trang và hạn chế render dư thừa thông qua kỹ thuật memoization, tách state và lazy loading.
   stack:
-    - TypeScript
-    - Next.js
-    - Go
-    - PostgreSQL
-    - GitHub Actions
+    - React
+    - Vue.js
+    - Three.js
+    - JavaScript
 
+- id: teacher-mindx
+  company: MindX Technology School
+  role:
+    en: Programming Teacher
+    vi: Giáo viên lập trình
+  start: 2021-11-01
+  end: 2023-01-31
+  location:
+    en: Ho Chi Minh City, Vietnam
+    vi: TP. Hồ Chí Minh, Việt Nam
+  highlights:
+    en:
+      - Taught Scratch across ~5 classes (~3 students per class) and introductory web development (HTML, CSS, JavaScript) across 3 classes (~20 students per class).
+      - Designed structured lessons and hands-on projects, guiding all web development students to deliver a working demo at the end of each course.
+    vi:
+      - Giảng dạy Scratch cho khoảng 5 lớp (~3 học viên/lớp) và lập trình web cơ bản (HTML, CSS, JavaScript) cho 3 lớp (~20 học viên/lớp).
+      - Thiết kế giáo án bài bản cùng các dự án thực hành, hướng dẫn toàn bộ học viên lớp web hoàn thành sản phẩm demo cuối khóa.
+  stack:
+    - Scratch
+    - HTML
+    - CSS
+    - JavaScript
+
+- id: freelance-informatics-mentor
+  company: Freelance
+  role:
+    en: Programming & Algorithms Mentor
+    vi: Gia sư Lập trình & Thuật toán
+  start: 2018-05-01
+  end: 2021-10-31
+  location:
+    en: Da Lat, Vietnam
+    vi: Đà Lạt, Việt Nam
+  highlights:
+    en:
+      - Mentored ~20 students in programming logic, core algorithms, and language-agnostic problem solving across Python, C++, and Pascal.
+      - Coached half of my students to pass admission into the specialized Informatics class at Thang Long High School for the Gifted in Da Lat.
+    vi:
+      - Hướng dẫn khoảng 20 học sinh về tư duy lập trình, thuật toán nền tảng và giải quyết vấn đề độc lập ngôn ngữ với Python, C++ và Pascal.
+      - Đồng hành giúp 50% học sinh theo học trúng tuyển vào lớp chuyên Tin của Trường THPT Chuyên Thăng Long, Đà Lạt.
+  stack:
+    - Algorithms
+    - C++
+    - Python
+    - Pascal
