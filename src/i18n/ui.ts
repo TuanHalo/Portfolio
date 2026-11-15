@@ -67,6 +67,7 @@ const en = {
   'blog.back': 'Back to all posts',
   'blog.prev': 'Previous',
   'blog.next': 'Next',
+  'blog.empty': 'No posts published yet. Check back soon!',
 
   'search.title': 'Search',
   'search.subtitle': 'Search across projects, blog posts, and pages.',
@@ -79,6 +80,7 @@ const en = {
   'resume.print': 'Print',
   'resume.summary': 'Summary',
   'resume.experience': 'Experience',
+  'resume.sideProjects': 'Side Projects',
   'resume.education': 'Education',
   'resume.skills': 'Skills',
   'resume.certificates': 'Certificates',
@@ -162,6 +164,7 @@ const vi: Record<keyof typeof en, string> = {
   'blog.back': 'Quay lại danh sách bài viết',
   'blog.prev': 'Bài trước',
   'blog.next': 'Bài tiếp theo',
+  'blog.empty': 'Chưa có bài viết nào được xuất bản. Hãy quay lại sau nhé!',
 
   'search.title': 'Tìm kiếm',
   'search.subtitle': 'Tìm kiếm trong dự án, bài viết và các trang.',
@@ -174,6 +177,7 @@ const vi: Record<keyof typeof en, string> = {
   'resume.print': 'In trang',
   'resume.summary': 'Tóm tắt',
   'resume.experience': 'Kinh nghiệm làm việc',
+  'resume.sideProjects': 'Dự án cá nhân',
   'resume.education': 'Học vấn',
   'resume.skills': 'Kỹ năng',
   'resume.certificates': 'Chứng chỉ',

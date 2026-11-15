@@ -6,6 +6,7 @@ import {
   getCertificates,
   getEducation,
   getExperience,
+  getLocalizedProjects,
   getProfile,
   getSkills,
 } from '@/lib/content';
@@ -19,13 +20,17 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const [profile, experience, education, skills, certificates] = await Promise.all([
+const [profile, experience, projects, education, skills, certificates] = await Promise.all([
   getProfile(),
   getExperience(),
+  getLocalizedProjects(lang),
   getEducation(),
   getSkills(),
   getCertificates(),
 ]);
+
+const featuredProjects = projects.filter((p) => p.entry.data.featured);
+const sideProjects = featuredProjects.length > 0 ? featuredProjects : projects;
 
 const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
 ---
@@ -118,6 +123,62 @@ const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
       </div>
     </section>
 
+    {
+      sideProjects.length > 0 && (
+        <section class="mt-6">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
+            {t('resume.sideProjects')}
+          </h3>
+          <div class="mt-3 space-y-3">
+            {
+              sideProjects.map((project) => (
+                <div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <div>
+                      <span class="font-semibold text-[var(--color-fg)]">
+                        {project.entry.data.title}
+                      </span>
+                      {project.entry.data.tags.length > 0 && (
+                        <span class="text-xs text-[var(--color-muted)]">
+                          {' '}
+                          · {project.entry.data.tags.join(', ')}
+                        </span>
+                      )}
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs text-[var(--color-accent)]">
+                      {project.entry.data.links?.demo && (
+                        <a
+                          href={project.entry.data.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="hover:underline"
+                        >
+                          {t('projects.demo')} ↗
+                        </a>
+                      )}
+                      {project.entry.data.links?.repo && (
+                        <a
+                          href={project.entry.data.links.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="hover:underline"
+                        >
+                          {t('projects.repo')} ↗
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  <p class="mt-1 text-xs leading-relaxed text-[var(--color-muted)]">
+                    {project.entry.data.summary}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      )
+    }
+
     <section class="mt-6">
       <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
         {t('resume.education')}
@@ -139,6 +200,13 @@ const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
                   {edu.data.end ? formatMonthYear(edu.data.end, lang) : t('experience.present')}
                 </span>
               </div>
+              {edu.data.highlights && edu.data.highlights[lang].length > 0 && (
+                <ul class="mt-1.5 list-disc space-y-1 pl-4 text-xs leading-relaxed text-[var(--color-muted)]">
+                  {edu.data.highlights[lang].map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))
         }
@@ -161,21 +229,25 @@ const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
       </div>
     </section>
 
-    <section class="mt-6">
-      <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-        {t('resume.certificates')}
-      </h3>
-      <ul class="mt-2 list-disc space-y-1 pl-4 text-xs text-[var(--color-muted)]">
-        {
-          certificates.map((cert) => (
-            <li>
-              <strong class="text-[var(--color-fg)]">{cert.data.name[lang]}</strong> —{' '}
-              {cert.data.issuer} ({formatMonthYear(cert.data.date, lang)})
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    {
+      certificates.length > 0 && (
+        <section class="mt-6">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
+            {t('resume.certificates')}
+          </h3>
+          <ul class="mt-2 list-disc space-y-1 pl-4 text-xs text-[var(--color-muted)]">
+            {
+              certificates.map((cert) => (
+                <li>
+                  <strong class="text-[var(--color-fg)]">{cert.data.name[lang]}</strong> —{' '}
+                  {cert.data.issuer} ({formatMonthYear(cert.data.date, lang)})
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      )
+    }
   </article>
 </ResumeLayout>
 

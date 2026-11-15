@@ -84,7 +84,7 @@ const yearsExp = computeYearsExperience(profile.careerStart);
       )
     }
 
-    <StatTile {lang} years={yearsExp} />
+    <StatTile class={latestPost ? undefined : 'sm:col-span-2'} {lang} years={yearsExp} />
 
     {
       latestPost && (
@@ -103,7 +103,7 @@ const yearsExp = computeYearsExperience(profile.careerStart);
     {
       currentJob && (
         <CurrentRoleTile
-          class="sm:col-span-2"
+          class={certificates.length > 0 ? 'sm:col-span-2' : 'sm:col-span-2 lg:col-span-4'}
           {lang}
           role={currentJob.data.role[lang]}
           company={currentJob.data.company}
@@ -111,7 +111,11 @@ const yearsExp = computeYearsExperience(profile.careerStart);
       )
     }
 
-    <CertificatesTile class="sm:col-span-2" {lang} count={certificates.length} />
+    {
+      certificates.length > 0 && (
+        <CertificatesTile class="sm:col-span-2" {lang} count={certificates.length} />
+      )
+    }
   </section>
 </BaseLayout>
 
