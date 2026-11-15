@@ -56,7 +56,7 @@ const schemas: Readonly<Record<string, JsonSchema>> = {
       additionalProperties: false,
       properties: {
         id: { type: 'string', const: 'me' },
-        name: { type: 'string', minLength: 1 },
+        name: localizedString,
         handle: { type: 'string', minLength: 1 },
         title: localizedString,
         tagline: {
@@ -72,6 +72,7 @@ const schemas: Readonly<Record<string, JsonSchema>> = {
         location: localizedString,
         availability: localizedString,
         email: { type: 'string', format: 'email' },
+        phone: { type: 'string' },
         avatar: { type: 'string', minLength: 1 },
         careerStart: { type: 'string', format: 'date' },
         socials: {
@@ -81,6 +82,7 @@ const schemas: Readonly<Record<string, JsonSchema>> = {
             github: { type: 'string' },
             linkedin: { type: 'string' },
             facebook: { type: 'string' },
+            zalo: { type: 'string' },
             x: { type: 'string' },
             website: { type: 'string' },
           },

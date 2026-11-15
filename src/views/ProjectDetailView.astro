@@ -20,7 +20,7 @@ const { Content } = await render(item.entry);
 const { title, summary, cover, coverAlt, tags, date, links, translation } = item.entry.data;
 ---
 
-<BaseLayout lang={lang} title={`${title} — ${profile.name}`} description={summary}>
+<BaseLayout lang={lang} title={`${title} — ${profile.name[lang]}`} description={summary}>
   <article class="mx-auto max-w-3xl">
     <a
       href={localizedPath(lang, 'projects')}

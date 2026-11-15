@@ -29,11 +29,13 @@ function checkNfcAndPrivacy(
   file: string,
   raw: string,
   allowedEmail: string,
+  allowedPhone: string,
 ): void {
   const lines = raw.split(/\r?\n/);
-  const phoneRegex = /(?:\+84|0)(?:\s|\.|-)?\d{2,3}(?:\s|\.|-)?\d{3}(?:\s|\.|-)?\d{3,4}/;
+  const phoneRegex = /(?:\+84|0)(?:\s|\.|-)?\d{2,3}(?:\s|\.|-)?\d{3}(?:\s|\.|-)?\d{3,4}/g;
   const nationalIdRegex = /\b\d{9}\b|\b\d{12}\b/;
   const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+  const normalizedAllowedPhone = allowedPhone.replace(/\D/g, '');
 
   lines.forEach((lineText, idx) => {
     const lineNum = idx + 1;
@@ -42,8 +44,17 @@ function checkNfcAndPrivacy(
       addDiagnostic('error', file, lineNum, 'vi-nfc', 'Text is not Unicode NFC normalized.');
     }
 
-    if (phoneRegex.test(lineText)) {
-      addDiagnostic('error', file, lineNum, 'privacy-phone', 'Possible phone number detected.');
+    const phones = lineText.match(phoneRegex) ?? [];
+    for (const phone of phones) {
+      const normalized = phone.replace(/\D/g, '');
+      const isAllowed =
+        normalizedAllowedPhone.length > 0 &&
+        (normalized === normalizedAllowedPhone ||
+          (normalizedAllowedPhone.startsWith('0') &&
+            normalized === `84${normalizedAllowedPhone.slice(1)}`));
+      if (!isAllowed) {
+        addDiagnostic('error', file, lineNum, 'privacy-phone', 'Possible phone number detected.');
+      }
     }
 
     if (nationalIdRegex.test(lineText) && !lineText.includes('credentialId')) {
@@ -116,9 +127,10 @@ async function main(): Promise<void> {
   const profileList = parseYaml(profileRaw) as Array<Record<string, unknown>>;
   const profile = profileList[0] ?? {};
   const allowedEmail = typeof profile.email === 'string' ? profile.email : '';
+  const allowedPhone = typeof profile.phone === 'string' ? profile.phone : '';
 
   // 1. Profile checks
-  checkNfcAndPrivacy(profilePath, profileRaw, allowedEmail);
+  checkNfcAndPrivacy(profilePath, profileRaw, allowedEmail, allowedPhone);
   const tagline = profile.tagline as Record<string, unknown> | undefined;
   for (const lang of ['en', 'vi'] as const) {
     const val = tagline?.[lang];
@@ -143,7 +155,7 @@ async function main(): Promise<void> {
   for (const yamlName of ['experience.yaml', 'education.yaml', 'certificates.yaml', 'skills.yaml']) {
     const p = path.resolve('content', yamlName);
     const raw = await readFile(p, 'utf8');
-    checkNfcAndPrivacy(p, raw, allowedEmail);
+    checkNfcAndPrivacy(p, raw, allowedEmail, allowedPhone);
 
     if (yamlName === 'certificates.yaml') {
       const items = (parseYaml(raw) as Array<Record<string, unknown>>) ?? [];
@@ -205,7 +217,7 @@ async function main(): Promise<void> {
       for (const file of files) {
         const fullPath = path.join(dir, file);
         const raw = await readFile(fullPath, 'utf8');
-        checkNfcAndPrivacy(fullPath, raw, allowedEmail);
+        checkNfcAndPrivacy(fullPath, raw, allowedEmail, allowedPhone);
 
         const { data } = parseFrontmatter(raw);
         if (col === 'projects') {

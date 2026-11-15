@@ -32,7 +32,7 @@ const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
 
 <ResumeLayout
   lang={lang}
-  title={`${t('resume.title')} — ${profile.name}`}
+  title={`${t('resume.title')} — ${profile.name[lang]}`}
   description={profile.tagline[lang]}
 >
   <div class="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -57,12 +57,20 @@ const pdfHref = withBase(`/resume/resume-${lang}.pdf`);
 
   <article class="bento-tile p-8 sm:p-10 print:border-none print:shadow-none print:p-0">
     <header class="border-b border-[var(--color-border)] pb-5">
-      <h2 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">{profile.name}</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">{profile.name[lang]}</h2>
       <p class="mt-1 text-base font-medium text-[var(--color-accent)]">{profile.title[lang]}</p>
       <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--color-muted)]">
         <span>{profile.location[lang]}</span>
         <span>·</span>
         <span>{profile.email}</span>
+        {
+          profile.phone && (
+            <>
+              <span>·</span>
+              <span>{profile.phone}</span>
+            </>
+          )
+        }
         {
           profile.socials.github && (
             <>

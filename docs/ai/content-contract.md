@@ -10,7 +10,7 @@ Every collection lives under `content/` and is validated by Zod in `src/content.
 | Field | Type | Required | EN/VI? | Notes |
 |---|---|---|---|---|
 | `id` | string | Yes | No | Must be `me` |
-| `name` | string | Yes | No | Full display name |
+| `name` | localized | Yes | Yes | Full display name |
 | `handle` | string | Yes | No | GitHub/social handle without `@` |
 | `title` | localized | Yes | Yes | Current role title |
 | `tagline` | localized | Yes | Yes | **Max 60 chars** per language (used on Bento tile) |
@@ -18,9 +18,10 @@ Every collection lives under `content/` and is validated by Zod in `src/content.
 | `location` | localized | Yes | Yes | City, Country (no street address!) |
 | `availability` | localized | Yes | Yes | Short status badge |
 | `email` | email | Yes | No | Public contact email |
+| `phone` | string | No | No | Approved public phone number (also powers Contact/Resume) |
 | `avatar` | path | Yes | No | Path under `assets/`, e.g. `/photos/avatar.svg` |
 | `careerStart` | `YYYY-MM-DD` | Yes | No | Drives the "N+ yrs" Bento tile |
-| `socials` | object | Yes | No | Keys: `github`, `linkedin`, `facebook`, `x`, `website` (`""` if unused) |
+| `socials` | object | Yes | No | Keys: `github`, `linkedin`, `facebook`, `zalo`, `x`, `website` (`""` if unused) |
 
 ## 2. `content/experience.yaml`
 
@@ -78,5 +79,5 @@ Every collection lives under `content/` and is validated by Zod in `src/content.
 
 - Using non-ASCII or spaces in MDX filenames (must be kebab-case ASCII, identical in `en/` and `vi/`).
 - Leaving `TODO(owner)` comments (allowed locally as warnings, **blocked in production deploy**).
-- Putting phone numbers, home street addresses, or ID numbers in any file.
+- Putting unapproved phone numbers (outside `profile.phone` / `profile.socials.zalo`), home street addresses, or ID numbers in any file.
 

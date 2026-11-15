@@ -53,7 +53,7 @@ const yearsExp = computeYearsExperience(profile.careerStart);
     <ProfileTile
       class="sm:col-span-2 lg:row-span-2"
       {lang}
-      name={profile.name}
+      name={profile.name[lang]}
       title={profile.title[lang]}
       tagline={profile.tagline[lang]}
       avatar={profile.avatar}
@@ -65,7 +65,7 @@ const yearsExp = computeYearsExperience(profile.careerStart);
       href={profile.socials.github}
       handle={`@${profile.handle}`}
     />
-    <SocialTile network="linkedin" href={profile.socials.linkedin} handle={profile.name} />
+    <SocialTile network="linkedin" href={profile.socials.linkedin} handle={profile.name[lang]} />
 
     <StackTile class="sm:col-span-2" {lang} items={allSkillItems} />
 

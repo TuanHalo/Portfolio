@@ -35,14 +35,14 @@ const profile = await getProfile();
     </script>
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header {lang} siteName={profile.name} />
+    <Header {lang} siteName={profile.name[lang]} />
     <main
       class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6"
       data-pagefind-body={pagefindIgnore ? undefined : ''}
     >
       <slot />
     </main>
-    <Footer {lang} name={profile.name} />
+    <Footer {lang} name={profile.name[lang]} />
   </body>
 </html>
 

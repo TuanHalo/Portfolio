@@ -27,8 +27,22 @@
         "const": "me"
       },
       "name": {
-        "type": "string",
-        "minLength": 1
+        "type": "object",
+        "required": [
+          "en",
+          "vi"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
       },
       "handle": {
         "type": "string",
@@ -130,6 +144,9 @@
         "type": "string",
         "format": "email"
       },
+      "phone": {
+        "type": "string"
+      },
       "avatar": {
         "type": "string",
         "minLength": 1
@@ -149,6 +166,9 @@
             "type": "string"
           },
           "facebook": {
+            "type": "string"
+          },
+          "zalo": {
             "type": "string"
           },
           "x": {

@@ -39,7 +39,7 @@ const eduEntries: readonly TimelineEntry[] = education.map((item) => ({
 
 <BaseLayout
   lang={lang}
-  title={`${t('experience.title')} — ${profile.name}`}
+  title={`${t('experience.title')} — ${profile.name[lang]}`}
   description={profile.tagline[lang]}
 >
   <div class="space-y-10">
@@ -58,4 +58,3 @@ const eduEntries: readonly TimelineEntry[] = education.map((item) => ({
     </section>
   </div>
 </BaseLayout>
-

@@ -15,7 +15,7 @@ export const localizedStringList = z.object({
 const profile = defineCollection({
   loader: file('content/profile.yaml'),
   schema: z.object({
-    name: z.string().min(1),
+    name: localizedString,
     handle: z.string().min(1),
     title: localizedString,
     tagline: localizedString,
@@ -23,12 +23,14 @@ const profile = defineCollection({
     location: localizedString,
     availability: localizedString,
     email: z.string().email(),
+    phone: z.string().default(''),
     avatar: z.string().min(1),
     careerStart: z.coerce.date(),
     socials: z.object({
       github: z.string().url().or(z.literal('')).default(''),
       linkedin: z.string().url().or(z.literal('')).default(''),
       facebook: z.string().url().or(z.literal('')).default(''),
+      zalo: z.string().url().or(z.literal('')).default(''),
       x: z.string().url().or(z.literal('')).default(''),
       website: z.string().url().or(z.literal('')).default(''),
     }),

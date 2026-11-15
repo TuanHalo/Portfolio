@@ -23,7 +23,7 @@ const { title, description, date, tags, translation } = item.entry.data;
 const minutes = Math.max(1, Math.round(readingTime(item.entry.body ?? '').minutes));
 ---
 
-<BaseLayout lang={lang} title={`${title} — ${profile.name}`} description={description}>
+<BaseLayout lang={lang} title={`${title} — ${profile.name[lang]}`} description={description}>
   <article class="mx-auto max-w-3xl">
     <a
       href={localizedPath(lang, 'blog')}

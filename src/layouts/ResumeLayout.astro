@@ -34,11 +34,11 @@ const profile = await getProfile();
     </script>
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header {lang} siteName={profile.name} />
+    <Header {lang} siteName={profile.name[lang]} />
     <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8 sm:px-6 print:max-w-none print:p-0">
       <slot />
     </main>
-    <Footer {lang} name={profile.name} />
+    <Footer {lang} name={profile.name[lang]} />
   </body>
 </html>
 

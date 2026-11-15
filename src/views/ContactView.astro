@@ -19,11 +19,16 @@ const socialLinks = [
   { name: 'X', url: profile.socials.x },
   { name: 'Website', url: profile.socials.website },
 ].filter((item) => item.url.length > 0);
+
+const hasZaloOrPhone = profile.socials.zalo.length > 0 || profile.phone.length > 0;
+const zaloOrPhoneHref =
+  profile.socials.zalo.length > 0 ? profile.socials.zalo : `tel:${profile.phone}`;
+const zaloOrPhoneLabel = profile.phone.length > 0 ? profile.phone : 'Zalo';
 ---
 
 <BaseLayout
   lang={lang}
-  title={`${t('contact.title')} — ${profile.name}`}
+  title={`${t('contact.title')} — ${profile.name[lang]}`}
   description={t('contact.subtitle')}
 >
   <div class="mx-auto max-w-2xl space-y-6">
@@ -37,11 +42,32 @@ const socialLinks = [
     <div class="grid gap-4 sm:grid-cols-2">
       <a
         href={`mailto:${profile.email}`}
-        class="bento-tile flex flex-col justify-between p-6 sm:col-span-2"
+        class:list={[
+          'bento-tile flex flex-col justify-between p-6',
+          !hasZaloOrPhone && 'sm:col-span-2',
+        ]}
       >
         <span class="text-xs font-medium text-[var(--color-muted)]">{t('contact.email')}</span>
         <span class="mt-2 text-lg font-semibold text-[var(--color-accent)]">{profile.email} ↗</span>
       </a>
+
+      {
+        hasZaloOrPhone && (
+          <a
+            href={zaloOrPhoneHref}
+            target={profile.socials.zalo.length > 0 ? '_blank' : undefined}
+            rel={profile.socials.zalo.length > 0 ? 'noopener noreferrer' : undefined}
+            class="bento-tile flex flex-col justify-between p-6"
+          >
+            <span class="text-xs font-medium text-[var(--color-muted)]">
+              {t('contact.zaloPhone')}
+            </span>
+            <span class="mt-2 text-lg font-semibold text-[var(--color-accent)]">
+              {zaloOrPhoneLabel} ↗
+            </span>
+          </a>
+        )
+      }
 
       {
         socialLinks.map((item) => (

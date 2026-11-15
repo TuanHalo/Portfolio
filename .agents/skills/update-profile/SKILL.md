@@ -6,6 +6,6 @@ description: Update bio, tagline, location, availability, email, or social links
 # Update Profile Playbook
 
 1. **Edit `content/profile.yaml`**: Update only the requested fields on the `me` entry.
-2. **Length & privacy**: Keep `tagline.en` and `tagline.vi` at or under 60 characters. Never add phone numbers, street addresses, or ID numbers.
+2. **Length & privacy**: Keep `tagline.en` and `tagline.vi` at or under 60 characters. Never add street addresses, ID numbers, or unapproved phone numbers outside the owner's `profile.phone` / `socials.zalo`.
 3. **Validate**: Run `pnpm validate` and confirm 0 errors.
 

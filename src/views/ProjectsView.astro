@@ -20,7 +20,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.entry.data.tags))].sort((a
 
 <BaseLayout
   lang={lang}
-  title={`${t('projects.title')} — ${profile.name}`}
+  title={`${t('projects.title')} — ${profile.name[lang]}`}
   description={t('projects.subtitle')}
 >
   <div class="space-y-6">

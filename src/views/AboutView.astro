@@ -14,19 +14,19 @@ const t = useTranslations(lang);
 const [profile, skillGroups] = await Promise.all([getProfile(), getSkills()]);
 ---
 
-<BaseLayout lang={lang} title={`${t('about.title')} — ${profile.name}`} description={profile.tagline[lang]}>
+<BaseLayout lang={lang} title={`${t('about.title')} — ${profile.name[lang]}`} description={profile.tagline[lang]}>
   <div class="space-y-8">
     <section class="bento-tile p-6 sm:p-8">
       <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
         <img
           src={withBase(profile.avatar)}
-          alt={profile.name}
+          alt={profile.name[lang]}
           width="88"
           height="88"
           class="h-22 w-22 rounded-full object-cover ring-2 ring-[var(--color-border)]"
         />
         <div>
-          <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">{profile.name}</h1>
+          <h1 class="text-3xl font-bold tracking-tight text-[var(--color-fg)]">{profile.name[lang]}</h1>
           <p class="mt-1 text-base font-medium text-[var(--color-accent)]">{profile.title[lang]}</p>
           <div class="mt-2 flex flex-wrap gap-3 text-xs text-[var(--color-muted)]">
             <span>{t('about.location')}: <strong class="text-[var(--color-fg)]">{profile.location[lang]}</strong></span>

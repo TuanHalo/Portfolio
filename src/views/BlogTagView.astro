@@ -18,7 +18,7 @@ const profile = await getProfile();
 
 <BaseLayout
   lang={lang}
-  title={`#${tag} — ${t('blog.title')} — ${profile.name}`}
+  title={`#${tag} — ${t('blog.title')} — ${profile.name[lang]}`}
   description={t('blog.subtitle')}
 >
   <div class="space-y-6">

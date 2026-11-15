@@ -16,7 +16,7 @@ const [profile, certificates] = await Promise.all([getProfile(), getCertificates
 
 <BaseLayout
   lang={lang}
-  title={`${t('certificates.title')} — ${profile.name}`}
+  title={`${t('certificates.title')} — ${profile.name[lang]}`}
   description={t('certificates.subtitle')}
 >
   <div class="space-y-6">

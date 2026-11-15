@@ -7,7 +7,7 @@ export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'en';
 
 const en = {
-  'site.title': 'Minh Tuấn — Portfolio',
+  'site.title': 'Tuan Bui — Portfolio',
   'site.description': 'Personal portfolio, projects, experience, certificates, and writing.',
   'nav.home': 'Home',
   'nav.about': 'About',
@@ -86,6 +86,7 @@ const en = {
   'contact.title': 'Contact',
   'contact.subtitle': 'Feel free to reach out for collaboration, opportunities, or a quick chat.',
   'contact.email': 'Email',
+  'contact.zaloPhone': 'Phone / Zalo',
   'contact.socials': 'Social Profiles',
 
   'i18n.untranslated':
@@ -101,7 +102,7 @@ const en = {
 } as const;
 
 const vi: Record<keyof typeof en, string> = {
-  'site.title': 'Minh Tuấn — Portfolio',
+  'site.title': 'Tuấn Bùi — Portfolio',
   'site.description': 'Portfolio cá nhân, dự án, kinh nghiệm, chứng chỉ và bài viết.',
   'nav.home': 'Trang chủ',
   'nav.about': 'Giới thiệu',
@@ -180,6 +181,7 @@ const vi: Record<keyof typeof en, string> = {
   'contact.title': 'Liên hệ',
   'contact.subtitle': 'Hãy liên hệ với tôi nếu bạn muốn hợp tác, trao đổi công việc hoặc trò chuyện.',
   'contact.email': 'Email',
+  'contact.zaloPhone': 'Điện thoại / Zalo',
   'contact.socials': 'Mạng xã hội',
 
   'i18n.untranslated':
