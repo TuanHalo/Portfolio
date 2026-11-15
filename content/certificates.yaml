@@ -1,21 +1,2 @@
 # yaml-language-server: $schema=../docs/ai/schemas/certificates.schema.json
-- id: aws-solutions-architect-associate
-  name:
-    en: AWS Certified Solutions Architect – Associate
-    vi: Chứng chỉ AWS Solutions Architect – Associate
-  issuer: Amazon Web Services
-  date: 2024-03-15
-  credentialId: AWS-SAA-SAMPLE-001
-  credentialUrl: https://aws.amazon.com/certification/
-  file: /certificates/aws-saa-sample.pdf
-
-- id: google-cloud-digital-leader
-  name:
-    en: Google Cloud Digital Leader
-    vi: Chứng chỉ Google Cloud Digital Leader
-  issuer: Google Cloud
-  date: 2023-08-20
-  credentialId: GCP-CDL-SAMPLE-002
-  credentialUrl: https://cloud.google.com/learn/certification
-  file: /certificates/google-cloud-sample.pdf
-
+[]
