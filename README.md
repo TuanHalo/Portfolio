@@ -1,10 +1,10 @@
-# Portfolio — Minh Tuấn
+# Portfolio - Minh Tuấn
 
 Personal portfolio, knowledge base, and bilingual website (**English** + **Tiếng Việt**) built with **Astro**, **TypeScript**, and **Tailwind CSS**, published to GitHub Pages at **https://tuanhalo.github.io/Portfolio/**.
 
 ## How to Update Your Info
 
-You only need to edit files in **`content/`** and **`assets/`** — no code changes required.
+Edit files in `content/` and `assets/` to update site content. No code changes are needed.
 
 | What you want to update | File / Folder |
 |---|---|
@@ -17,7 +17,7 @@ You only need to edit files in **`content/`** and **`assets/`** — no code chan
 | Blog posts | `content/blog/en/*.mdx` & `content/blog/vi/*.mdx` |
 | Photos & raw documents | `assets/photos/`, `assets/documents/` |
 
-> **AI assistants:** This repository includes an AI contract in [`AGENTS.md`](AGENTS.md) with schemas in [`docs/ai/`](docs/ai/) and playbooks in [`.agents/skills/`](.agents/skills/). You can ask an AI assistant to add projects, experience, certificates, or blog posts directly.
+> For AI assistants: [`AGENTS.md`](AGENTS.md) defines the editing contract, [`docs/ai/`](docs/ai/) holds the schemas, and [`.agents/skills/`](.agents/skills/) has task playbooks for adding projects, experience, certificates, or blog posts.
 
 ## Local Development
 
@@ -35,6 +35,6 @@ pnpm build:pdf      # generate EN & VI resume PDFs into dist/resume/
 ## Deployment (GitHub Pages)
 
 1. Push to `main`.
-2. In your GitHub repository: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+2. In your GitHub repository: **Settings > Pages > Build and deployment > Source > GitHub Actions**.
 3. The workflow in `.github/workflows/deploy.yml` validates content, builds the site, generates `resume-en.pdf` and `resume-vi.pdf`, and deploys to `https://tuanhalo.github.io/Portfolio/`.
 
