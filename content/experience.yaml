@@ -10,15 +10,15 @@
     vi: TP. Hồ Chí Minh, Việt Nam
   highlights:
     en:
-      - Built and standardized 30+ reusable components for an internal dynamic form engine powering 100+ forms across banking shells (nabONE, nabTrade, nabConnect) with 100,000+ monthly banker and customer visits, decomposing complex components by purpose to reduce duplication and speed up form delivery.
-      - Optimized form submission workflows using frontend debouncing and backend request batching to satisfy downstream API limits and lower server call volume, while auditing shared component dependencies before uplifts to prevent regressions.
-      - Standardized backend structured logging across multi-API form orchestration flows, enabling OpenSearch dashboards and alerts (with Grafana performance checks) to track form metrics and quickly identify forms impacted by API outages.
-      - Shipped 10+ bug fixes and accessibility improvements to NAB's MUI-based Elevate UI library, earning team recognition three times.
+      - Built and standardized 30+ reusable components for an internal dynamic form engine that runs 100+ forms across nab.com.au, nabONE, nabTrade, and nabConnect (100,000+ monthly banker and customer visits). Split complex components by responsibility to cut duplication and ship new forms faster.
+      - Added frontend debouncing and backend request batching to form submissions to cut server traffic and stay within downstream API limits. Audited shared component dependencies before each upgrade to prevent regressions.
+      - Standardized structured backend logging across multi-API form flows so the team could build OpenSearch dashboards and alerts (paired with Grafana performance checks) to track form metrics and spot which forms were affected during API outages.
+      - Shipped 10+ bug fixes and accessibility improvements to NAB's MUI-based Elevate UI library, and received team recognition three times.
     vi:
-      - Xây dựng và chuẩn hóa hơn 30 component tái sử dụng cho hệ thống tạo form động nội bộ vận hành hơn 100 form trên các nền tảng ngân hàng (nabONE, nabTrade, nabConnect) với hơn 100.000 lượt truy cập mỗi tháng, tách nhỏ component phức tạp theo mục đích để giảm trùng lặp và tăng tốc triển khai.
-      - Tối ưu hóa luồng gửi form bằng debouncing ở frontend và batching request ở backend nhằm đáp ứng giới hạn API và giảm tải gọi server, đồng thời rà soát ảnh hưởng của các component dùng chung trước mỗi lần nâng cấp để tránh lỗi hồi quy.
-      - Chuẩn hóa định dạng log backend cho các luồng form gọi nhiều API, hỗ trợ xây dựng dashboard và cảnh báo trên OpenSearch (kết hợp Grafana kiểm thử hiệu năng) giúp theo dõi chỉ số form và khoanh vùng nhanh các form bị ảnh hưởng khi API gặp sự cố.
-      - Đóng góp hơn 10 bản sửa lỗi và cải thiện khả năng truy cập (accessibility) cho thư viện giao diện Elevate trên nền MUI của NAB, nhận được 3 lần ghi nhận từ nhóm.
+      - Xây dựng và chuẩn hóa hơn 30 component dùng lại cho hệ thống tạo form động nội bộ đang chạy hơn 100 form trên nab.com.au, nabONE, nabTrade và nabConnect (hơn 100.000 lượt truy cập của nhân viên ngân hàng và khách hàng mỗi tháng). Tách nhỏ các component phức tạp theo chức năng để bớt lặp code và ra form mới nhanh hơn.
+      - Thêm debouncing ở frontend và batching request ở backend cho luồng gửi form để giảm số lần gọi server và không vượt ngưỡng giới hạn của các API phía sau. Rà soát các phụ thuộc của component dùng chung trước mỗi đợt nâng cấp để tránh lỗi hồi quy.
+      - Chuẩn hóa định dạng log ở backend cho các luồng form gọi nhiều API để dựng dashboard và cảnh báo trên OpenSearch (kết hợp kiểm thử hiệu năng bằng Grafana), giúp theo dõi chỉ số và tìm nhanh các form bị ảnh hưởng khi API lỗi.
+      - Gửi hơn 10 bản sửa lỗi và cải thiện accessibility cho thư viện giao diện Elevate (trên nền MUI) của NAB, được nhóm ghi nhận 3 lần.
   stack:
     - TypeScript
     - React
@@ -39,13 +39,13 @@
     vi: TP. Hồ Chí Minh, Việt Nam
   highlights:
     en:
-      - Built customer-facing interactive web interfaces with React and Three.js, upgrading key product visualizations from 2D to 3D.
-      - Developed internal administration portal features in Vue.js and integrated backend APIs to support daily management workflows.
+      - Built customer-facing web interfaces with React and Three.js, moving product visualizations from 2D to 3D.
+      - Built internal admin portal features in Vue.js and integrated backend APIs for daily management workflows.
       - Reduced page load time by ~10% and eliminated unnecessary re-renders through memoization, state splitting, and lazy loading.
     vi:
-      - Phát triển giao diện web tương tác hướng tới khách hàng bằng React và Three.js, nâng cấp nhiều phần hiển thị trực quan từ 2D lên 3D.
-      - Xây dựng các tính năng cho cổng quản trị nội bộ bằng Vue.js và tích hợp API backend phục vụ quy trình vận hành hàng ngày.
-      - Giảm khoảng 10% thời gian tải trang và hạn chế render dư thừa thông qua kỹ thuật memoization, tách state và lazy loading.
+      - Phát triển giao diện web cho khách hàng bằng React và Three.js, chuyển phần hiển thị sản phẩm từ 2D sang 3D.
+      - Làm các tính năng cho trang quản trị nội bộ bằng Vue.js và tích hợp API backend phục vụ vận hành hàng ngày.
+      - Giảm khoảng 10% thời gian tải trang và hạn chế render thừa bằng memoization, tách state và lazy loading.
   stack:
     - React
     - Vue.js
@@ -65,10 +65,10 @@
   highlights:
     en:
       - Taught Scratch across ~5 classes (~3 students per class) and introductory web development (HTML, CSS, JavaScript) across 3 classes (~20 students per class).
-      - Designed structured lessons and hands-on projects, guiding all web development students to deliver a working demo at the end of each course.
+      - Prepared lesson plans and class projects, and helped every web development student ship a working demo at the end of each course.
     vi:
       - Giảng dạy Scratch cho khoảng 5 lớp (~3 học viên/lớp) và lập trình web cơ bản (HTML, CSS, JavaScript) cho 3 lớp (~20 học viên/lớp).
-      - Thiết kế giáo án bài bản cùng các dự án thực hành, hướng dẫn toàn bộ học viên lớp web hoàn thành sản phẩm demo cuối khóa.
+      - Soạn giáo án và bài tập thực hành, hướng dẫn toàn bộ học viên lớp web hoàn thành sản phẩm demo cuối khóa.
   stack:
     - Scratch
     - HTML
@@ -87,11 +87,11 @@
     vi: Đà Lạt, Việt Nam
   highlights:
     en:
-      - Mentored ~20 students in programming logic, core algorithms, and language-agnostic problem solving across Python, C++, and Pascal.
+      - Tutored ~20 students in programming logic and core algorithms using Python, C++, and Pascal, focusing on problem-solving independent of language.
       - Coached half of my students to pass admission into the specialized Informatics class at Thang Long High School for the Gifted in Da Lat.
     vi:
-      - Hướng dẫn khoảng 20 học sinh về tư duy lập trình, thuật toán nền tảng và giải quyết vấn đề độc lập ngôn ngữ với Python, C++ và Pascal.
-      - Đồng hành giúp 50% học sinh theo học trúng tuyển vào lớp chuyên Tin của Trường THPT Chuyên Thăng Long, Đà Lạt.
+      - Hướng dẫn khoảng 20 học sinh về tư duy lập trình và thuật toán cơ bản với Python, C++ và Pascal, tập trung vào cách giải quyết bài toán thay vì phụ thuộc ngôn ngữ.
+      - Ôn luyện cho học sinh thi tuyển, giúp 50% học sinh theo học đỗ vào lớp chuyên Tin Trường THPT Chuyên Thăng Long, Đà Lạt.
   stack:
     - Algorithms
     - C++
