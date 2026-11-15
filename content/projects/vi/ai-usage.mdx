@@ -1,0 +1,32 @@
+---
+title: AI-Usage
+summary: Kho lưu trữ chuẩn hóa, kiểm tra và đồng bộ skill, rule, agent sang Antigravity, Cursor, Claude Code và Gemini CLI.
+cover: ../_images/ai-usage.jpg
+coverAlt: Kho tài nguyên AI-Usage đồng bộ sang Antigravity, Cursor, Claude Code và Gemini CLI
+tags:
+  - Astro
+  - Architecture
+  - PowerShell
+  - AI Tooling
+date: 2026-11-14
+featured: true
+translation: machine
+links:
+  demo: https://tuanhalo.github.io/AI-Usage/
+  repo: https://github.com/TuanHalo/AI-Usage
+---
+
+## Tổng quan
+
+`AI-Usage` là kho lưu trữ trung tâm để biên soạn, kiểm tra hợp lệ và phân phối các tài nguyên AI phục vụ lập trình—bao gồm skill, rule, agent và nguyên tắc kỹ thuật—đồng thời xuất bản trang tài liệu và báo cáo tương tác theo phong cách Claymorphism trên GitHub Pages.
+
+## Vấn đề cần giải quyết
+
+Khi làm việc đồng thời với nhiều trợ lý lập trình AI (`Antigravity`, `Cursor`, `Claude Code` và `Gemini CLI`), việc sao chép thủ công các hướng dẫn sang từng định dạng cấu hình riêng rất dễ lệch phiên bản và khó duy trì tiêu chuẩn chung.
+
+## Kiến trúc & Cách tiếp cận
+
+- **Nguồn dữ liệu chuẩn (Single Source of Truth)**: Toàn bộ skill, rule, agent và principle được viết một lần tại `assets/` bằng Markdown và YAML.
+- **Hợp đồng kiểm tra nhất quán**: Các tệp `content-contract.yaml`, `style-contract.yaml` và `output-contract.yaml` cùng JSON Schema kiểm soát cấu trúc và giới hạn độ dài.
+- **Công cụ đồng bộ đa nền tảng**: Script PowerShell (`scripts/sync.ps1`) hỗ trợ `-DryRun` và `-ValidateOnly`, chuyển đổi sang đúng định dạng của từng công cụ (`SKILL.md`, `AGENTS.md`, `.mdc`, `CLAUDE.md`, `GEMINI.md`).
+- **Trang tài liệu tự động**: Website Astro 5 trong `site/` áp dụng design system Claymorphism và tự động deploy lên GitHub Pages qua GitHub Actions.

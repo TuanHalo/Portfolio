@@ -1,0 +1,32 @@
+---
+title: Algorithm Hub
+summary: Nền tảng học thuật toán và nhật ký giải bài tập tương tác với mô phỏng từng bước, mã nguồn Python và phân tích độ phức tạp.
+cover: ../_images/algorithm.jpg
+coverAlt: Minh họa biểu đồ cột sắp xếp và đồ thị nút của Algorithm Hub
+tags:
+  - Astro
+  - TypeScript
+  - Python
+  - Algorithms
+date: 2026-11-14
+featured: true
+translation: machine
+links:
+  demo: https://tuanhalo.github.io/Algorithm/
+  repo: https://github.com/TuanHalo/Algorithm
+---
+
+## Tổng quan
+
+`Algorithm Hub` là nền tảng học thuật toán tương tác và nhật ký giải bài tập cá nhân xây dựng bằng Astro và TypeScript, giúp trực quan hóa thuật toán cốt lõi và các bài toán phỏng vấn trên giao diện Claymorphism.
+
+## Nội dung chính
+
+- **Góc học tập (`/learn/`)**: Xây dựng lộ trình gồm 10 chủ đề thuật toán cốt lõi—trong đó **Sorting** và **Searching** đã có bài học tương tác kèm mô phỏng từng bước, mã nguồn Python sạch, bảng so sánh và phân tích độ phức tạp; đồng thời chuẩn bị sẵn khung nội dung cho **Graph**, **Dynamic Programming**, **Tree**, **Linked List**, **Stack & Queue**, **Hashing**, **Greedy** và **Backtracking**.
+- **Nhật ký giải bài (`/problems/`)**: Tổng hợp lời giải các bài toán LeetCode và HackerRank với hướng tiếp cận, mã nguồn, các trường hợp biên và ghi chú rà soát bằng AI.
+
+## Kiến trúc & Cách tiếp cận
+
+- **Tích hợp trình mô phỏng riêng**: Xây dựng Astro integration (`src/integrations/visualizers`) để đóng gói các trình mô phỏng sắp xếp và tìm kiếm vào bản build tĩnh.
+- **Sơ đồ luồng xử lý**: Kết hợp các sơ đồ Archify (`public/diagrams/`) minh họa luồng chạy của Binary Search, Quick Sort, Merge Sort, Heap Sort và Two Sum.
+- **Tĩnh và tối ưu tốc độ**: Sử dụng Astro 5, tô sáng cú pháp với Shiki và triển khai tự động lên GitHub Pages.
