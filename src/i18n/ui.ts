@@ -7,7 +7,7 @@ export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'en';
 
 const en = {
-  'site.title': 'Tuan Bui — Portfolio',
+  'site.title': 'Tuan Bui | Portfolio',
   'site.description': 'Personal portfolio, projects, experience, certificates, and writing.',
   'nav.home': 'Home',
   'nav.about': 'About',
@@ -59,7 +59,7 @@ const en = {
   'certificates.verify': 'Verify online',
 
   'blog.title': 'Blog',
-  'blog.subtitle': 'Notes on software engineering, architecture, and lessons learned.',
+  'blog.subtitle': 'Notes on software engineering and system design.',
   'blog.readMore': 'Read article',
   'blog.readingTime': 'min read',
   'blog.allTags': 'All tags',
@@ -67,7 +67,7 @@ const en = {
   'blog.back': 'Back to all posts',
   'blog.prev': 'Previous',
   'blog.next': 'Next',
-  'blog.empty': 'No posts published yet. Check back soon!',
+  'blog.empty': 'No posts published yet.',
 
   'search.title': 'Search',
   'search.subtitle': 'Search across projects, blog posts, and pages.',
@@ -86,7 +86,7 @@ const en = {
   'resume.certificates': 'Certificates',
 
   'contact.title': 'Contact',
-  'contact.subtitle': 'Feel free to reach out for collaboration, opportunities, or a quick chat.',
+  'contact.subtitle': 'Open to collaboration, roles, or a quick chat.',
   'contact.email': 'Email',
   'contact.zaloPhone': 'Phone / Zalo',
   'contact.socials': 'Social Profiles',
@@ -94,7 +94,7 @@ const en = {
   'i18n.untranslated':
     'This entry is not yet available in Vietnamese. Showing the English version below.',
   'i18n.machineTranslated':
-    'Bản dịch tự động — chưa được tác giả rà soát hoàn chỉnh.',
+    'Bản dịch tự động, chưa được tác giả rà soát hoàn chỉnh.',
 
   'theme.toggle': 'Toggle color theme',
   'notFound.title': 'Page not found',
@@ -104,7 +104,7 @@ const en = {
 } as const;
 
 const vi: Record<keyof typeof en, string> = {
-  'site.title': 'Tuấn Bùi — Portfolio',
+  'site.title': 'Tuấn Bùi | Portfolio',
   'site.description': 'Portfolio cá nhân, dự án, kinh nghiệm, chứng chỉ và bài viết.',
   'nav.home': 'Trang chủ',
   'nav.about': 'Giới thiệu',
@@ -156,7 +156,7 @@ const vi: Record<keyof typeof en, string> = {
   'certificates.verify': 'Xác minh trực tuyến',
 
   'blog.title': 'Bài viết',
-  'blog.subtitle': 'Ghi chú về kỹ thuật phần mềm, kiến trúc hệ thống và kinh nghiệm thực tế.',
+  'blog.subtitle': 'Ghi chú về kỹ thuật phần mềm và thiết kế hệ thống.',
   'blog.readMore': 'Đọc tiếp',
   'blog.readingTime': 'phút đọc',
   'blog.allTags': 'Tất cả thẻ',
@@ -164,15 +164,15 @@ const vi: Record<keyof typeof en, string> = {
   'blog.back': 'Quay lại danh sách bài viết',
   'blog.prev': 'Bài trước',
   'blog.next': 'Bài tiếp theo',
-  'blog.empty': 'Chưa có bài viết nào được xuất bản. Hãy quay lại sau nhé!',
+  'blog.empty': 'Chưa có bài viết nào.',
 
   'search.title': 'Tìm kiếm',
   'search.subtitle': 'Tìm kiếm trong dự án, bài viết và các trang.',
   'search.placeholder': 'Nhập từ khóa...',
   'search.devNotice':
-    'Chỉ mục tìm kiếm toàn văn được tạo khi build production (pnpm build). Hãy chạy pnpm preview để kiểm tra tìm kiếm.',
+    'Dữ liệu tìm kiếm được tạo khi chạy pnpm build. Chạy pnpm preview để kiểm tra tìm kiếm ở local.',
 
-  'resume.title': 'Hồ sơ năng lực (CV)',
+  'resume.title': 'Hồ sơ (CV)',
   'resume.download': 'Tải bản PDF',
   'resume.print': 'In trang',
   'resume.summary': 'Tóm tắt',
@@ -183,7 +183,7 @@ const vi: Record<keyof typeof en, string> = {
   'resume.certificates': 'Chứng chỉ',
 
   'contact.title': 'Liên hệ',
-  'contact.subtitle': 'Hãy liên hệ với tôi nếu bạn muốn hợp tác, trao đổi công việc hoặc trò chuyện.',
+  'contact.subtitle': 'Nhắn cho tôi nếu bạn muốn hợp tác, trao đổi công việc hoặc trò chuyện.',
   'contact.email': 'Email',
   'contact.zaloPhone': 'Điện thoại / Zalo',
   'contact.socials': 'Mạng xã hội',
@@ -191,11 +191,11 @@ const vi: Record<keyof typeof en, string> = {
   'i18n.untranslated':
     'Bài viết này chưa có bản dịch tiếng Việt. Đang hiển thị nội dung tiếng Anh bên dưới.',
   'i18n.machineTranslated':
-    'Bản dịch tự động — chưa được tác giả rà soát hoàn chỉnh.',
+    'Bản dịch tự động, chưa được tác giả rà soát hoàn chỉnh.',
 
   'theme.toggle': 'Chuyển giao diện sáng/tối',
   'notFound.title': 'Không tìm thấy trang',
-  'notFound.message': 'Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.',
+  'notFound.message': 'Trang bạn tìm không tồn tại hoặc đã chuyển sang địa chỉ khác.',
   'notFound.home': 'Về trang chủ',
   'footer.builtWith': 'Xây dựng bằng Astro & TypeScript. Lưu trữ trên GitHub Pages.',
 };
