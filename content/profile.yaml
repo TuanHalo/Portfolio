@@ -8,15 +8,15 @@
     en: Software Engineer
     vi: Kỹ sư phần mềm
   tagline:
-    en: Still that curious kid—reclaiming my brightest spark.
+    en: Still that curious kid, reclaiming my brightest spark.
     vi: Cậu bé năm nào đang tìm lại ánh hào quang của riêng mình.
   bio:
     en: |
-      I'm a software engineer focused on full-stack web applications, developer tooling, and clean system architecture.
-      I care about crisp interfaces, strong type safety, and software that stays maintainable years after launch.
+      I'm a software engineer building full-stack web apps and developer tools.
+      I focus on clear interfaces and strict type safety so codebases stay easy to maintain long after launch.
     vi: |
-      Tôi là kỹ sư phần mềm tập trung vào ứng dụng web full-stack, công cụ phát triển và kiến trúc hệ thống gọn gàng.
-      Tôi chú trọng giao diện rõ ràng, kiểm soát kiểu dữ liệu chặt chẽ và mã nguồn dễ bảo trì lâu dài.
+      Tôi là kỹ sư phần mềm làm các ứng dụng web full-stack và công cụ cho lập trình viên.
+      Tôi ưu tiên giao diện rõ ràng và kiểm tra kiểu dữ liệu chặt chẽ để mã nguồn vẫn dễ sửa và bảo trì sau nhiều năm.
   location:
     en: Ho Chi Minh City, Vietnam
     vi: TP. Hồ Chí Minh, Việt Nam
